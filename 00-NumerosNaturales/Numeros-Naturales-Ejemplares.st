@@ -17,52 +17,52 @@ next
 	^II.! !
 
 
-!I class methodsFor: 'operations' stamp: 'LM 4/4/2022 20:40:58'!
-* multiplicando
- ^ multiplicando.! !
+!I class methodsFor: 'operations' stamp: 'BB 4/10/2022 21:37:12'!
+* multiplicand
+ ^ multiplicand.! !
 
 !I class methodsFor: 'operations' stamp: 'ARM 3/31/2022 21:19:14'!
 + aNatural
 
 	^aNatural next! !
 
-!I class methodsFor: 'operations' stamp: 'LM 4/9/2022 13:43:48'!
-- unNumero
+!I class methodsFor: 'operations' stamp: 'BB 4/10/2022 21:37:30'!
+- aNatural
 	self error: self negativeNumbersNotSupportedErrorDescription.! !
 
-!I class methodsFor: 'operations' stamp: 'LM 4/9/2022 13:47:22'!
-/ unDivisor
-	unDivisor = I ifTrue: [^ I].
+!I class methodsFor: 'operations' stamp: 'BB 4/10/2022 21:38:50'!
+/ aDivisor
+	aDivisor = I ifTrue: [^ I].
 	^ self error: self canNotDivideByBiggerNumberErrorDescription.
 	! !
 
 
-!I class methodsFor: 'private' stamp: 'LM 4/9/2022 13:46:33'!
+!I class methodsFor: 'private' stamp: 'BB 4/10/2022 21:40:02'!
 canNotDivideByBiggerNumberErrorDescription
 
-	^ 'No se puede dividir un número por otro mayor'.! !
+	^ 'Cannot divide by a bigger number.'.! !
 
-!I class methodsFor: 'private' stamp: 'LM 4/9/2022 13:18:42'!
+!I class methodsFor: 'private' stamp: 'BB 4/10/2022 21:39:57'!
 negativeNumbersNotSupportedErrorDescription
 
-	^ 'El resultado de la operación debe pertenecer a los números naturales'.! !
+	^ 'The result of this operation does not belong to the natural numbers.'.! !
 
-!I class methodsFor: 'private' stamp: 'LM 4/9/2022 14:05:12'!
-substractTo: unNumero
-	^ unNumero previous.! !
+!I class methodsFor: 'private' stamp: 'BB 4/10/2022 21:40:10'!
+substractTo: aNatural
+	^ aNatural previous.! !
 
 
-!I class methodsFor: 'comparation' stamp: 'LM 4/9/2022 14:30:33'!
-< unNumero
-	unNumero = I ifTrue: [^false].
+!I class methodsFor: 'comparation' stamp: 'BB 4/10/2022 21:40:46'!
+< aNatural
+	aNatural = I ifTrue: [^false].
 	^true.! !
 
-!I class methodsFor: 'comparation' stamp: 'LM 4/9/2022 13:26:07'!
->= unNumero
-	^ (self < unNumero) not.! !
+!I class methodsFor: 'comparation' stamp: 'BB 4/10/2022 21:40:52'!
+>= aNatural
+	^ (self < aNatural) not.! !
 
 
-!I class methodsFor: '--** private fileout/in **--' stamp: 'LM 4/9/2022 14:36:05'!
+!I class methodsFor: '--** private fileout/in **--' stamp: 'BB 4/10/2022 21:56:39'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -82,19 +82,19 @@ DenotativeObject subclass: #II
 II class
 	instanceVariableNames: 'next previous'!
 
-!II class methodsFor: 'operations' stamp: 'LM 4/4/2022 20:40:27'!
-* multiplicando
-	^ multiplicando + (self previous * multiplicando).! !
+!II class methodsFor: 'operations' stamp: 'BB 4/10/2022 21:41:11'!
+* multiplicand
+	^ multiplicand + (self previous * multiplicand).! !
 
-!II class methodsFor: 'operations' stamp: 'ARM 3/31/2022 21:27:43'!
-+ unNatural
+!II class methodsFor: 'operations' stamp: 'BB 4/10/2022 21:41:27'!
++ aNatural
 
-	^previous + unNatural next! !
+	^previous + aNatural next! !
 
-!II class methodsFor: 'operations' stamp: 'LM 4/4/2022 20:25:57'!
-- unNatural
+!II class methodsFor: 'operations' stamp: 'BB 4/10/2022 21:41:36'!
+- aNatural
 
-	^ unNatural substractTo: self.! !
+	^ aNatural substractTo: self.! !
 
 !II class methodsFor: 'operations' stamp: 'LM 4/9/2022 14:34:52'!
 / Divisor
@@ -104,14 +104,20 @@ II class
 	(self - Divisor < Divisor) ifTrue: [^ I].! !
 
 
-!II class methodsFor: 'next & previous' stamp: 'LM 4/9/2022 13:53:26'!
+!II class methodsFor: 'next & previous' stamp: 'BB 4/10/2022 21:53:09'!
 nameOfNext
-	self ifNumberEnds: 'III' value: [^ self reemplazarUltimaParteDelNumero: 'III' con: 'IV' ].
-	self ifNumberEnds: 'IV' value: [^ self reemplazarUltimaParteDelNumero: 'IV' con: 'V' ].
-	self ifNumberEnds: 'VIII' value: [^ self reemplazarUltimaParteDelNumero: 'VIII' con: 'IX' ].
- 	self ifNumberEnds: 'IX' value: [^ self reemplazarUltimaParteDelNumero: 'IX' con: 'X' ].
-	self ifNumberEnds: 'XXXIX' value: [^ self reemplazarUltimaParteDelNumero: 'XXXIX' con: 'XL' ].
-	self ifNumberEnds: 'XLIX' value: [^ self reemplazarUltimaParteDelNumero: 'XLIX' con: 'L' ].
+	self ifNumberEnds: 'III' value: [^ self replaceLastPartOfNumber: 'III' with: 'IV' ].
+	self ifNumberEnds: 'IV' value: [^ self replaceLastPartOfNumber: 'IV' with: 'V' ].
+	self ifNumberEnds: 'VIII' value: [^ self replaceLastPartOfNumber: 'VIII' with: 'IX' ].
+ 	self ifNumberEnds: 'IX' value: [^ self replaceLastPartOfNumber: 'IX' with: 'X' ].
+	self ifNumberEnds: 'XXXIX' value: [^ self replaceLastPartOfNumber: 'XXXIX' with: 'XL' ].
+	self ifNumberEnds: 'XLIX' value: [^ self replaceLastPartOfNumber: 'XLIX' with: 'L' ].
+	self ifNumberEnds: 'LXXXIX' value: [^ self replaceLastPartOfNumber: 'LXXXIX' with: 'XC' ].
+	self ifNumberEnds: 'XCIX' value: [^ self replaceLastPartOfNumber: 'XCIX' with: 'C' ].
+	self ifNumberEnds: 'CCCXCIX' value: [^ self replaceLastPartOfNumber: 'CCCXCIX' with: 'CD' ].
+	self ifNumberEnds: 'CDXCIX' value: [^ self replaceLastPartOfNumber: 'CDXCIX' with: 'D' ].
+	self ifNumberEnds: 'DCCCXCIX' value: [^ self replaceLastPartOfNumber: 'DCCCXCIX' with: 'CM' ].
+	self ifNumberEnds: 'CMXCIX' value: [^ self replaceLastPartOfNumber: 'CMXCIX' with: 'M' ].
 	^ self name , 'I'.! !
 
 !II class methodsFor: 'next & previous' stamp: 'LM 4/4/2022 20:52:28'!
@@ -126,10 +132,10 @@ previous
 
 	^previous! !
 
-!II class methodsFor: 'next & previous' stamp: 'ARM 3/31/2022 21:20:55'!
-previous: unNatural 
+!II class methodsFor: 'next & previous' stamp: 'BB 4/10/2022 21:42:04'!
+previous: aNatural 
 	
-	previous _ unNatural! !
+	previous _ aNatural! !
 
 
 !II class methodsFor: 'remove' stamp: 'LM 4/9/2022 13:26:39'!
@@ -143,36 +149,36 @@ removeAllNext
 	]! !
 
 
-!II class methodsFor: 'comparation' stamp: 'LM 4/9/2022 14:30:07'!
-< unNumero
-	(unNumero = I) ifTrue: [^ false.].
-	^ (self previous) < (unNumero  previous).! !
+!II class methodsFor: 'comparation' stamp: 'BB 4/10/2022 21:42:19'!
+< aNatural
+	(aNatural = I) ifTrue: [^ false.].
+	^ (self previous) < (aNatural  previous).! !
 
-!II class methodsFor: 'comparation' stamp: 'LM 4/9/2022 14:28:21'!
->= unNumero
-	^ (self < unNumero)not.! !
+!II class methodsFor: 'comparation' stamp: 'BB 4/10/2022 21:42:32'!
+>= aNatural
+	^ (self < aNatural)not.! !
 
 
-!II class methodsFor: 'private' stamp: 'LM 4/9/2022 13:18:04'!
+!II class methodsFor: 'private' stamp: 'BB 4/10/2022 21:42:46'!
 canNotDivideByBiggerNumberErrorDescription
 
-	^ 'No se puede dividir un número por otro mayor'.! !
+	^ 'Cannot divide by a bigger number.'.! !
 
 !II class methodsFor: 'private' stamp: 'LM 4/9/2022 13:33:30'!
 ifNumberEnds: sufix value: aBlockClosure 
 	(self name endsWith: sufix) ifTrue: aBlockClosure .! !
 
-!II class methodsFor: 'private' stamp: 'LM 4/9/2022 13:39:45'!
-reemplazarUltimaParteDelNumero: ultimaParteDelNumero con: numeroDeReemplazo
+!II class methodsFor: 'private' stamp: 'BB 4/10/2022 21:44:54'!
+replaceLastPartOfNumber: lastPartOfNumber with: replacementNumber
 
-	^(self name withoutSuffix: ultimaParteDelNumero), numeroDeReemplazo.! !
+	^(self name withoutSuffix: lastPartOfNumber), replacementNumber.! !
 
-!II class methodsFor: 'private' stamp: 'LM 4/4/2022 20:31:36'!
-substractTo: minuendo
-	^ minuendo previous - self previous. ! !
+!II class methodsFor: 'private' stamp: 'BB 4/10/2022 21:43:55'!
+substractTo: minuend
+	^ minuend previous - self previous. ! !
 
 
-!II class methodsFor: '--** private fileout/in **--' stamp: 'LM 4/9/2022 14:36:05'!
+!II class methodsFor: '--** private fileout/in **--' stamp: 'BB 4/10/2022 21:56:39'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -193,7 +199,7 @@ II subclass: #III
 III class
 	instanceVariableNames: ''!
 
-!III class methodsFor: '--** private fileout/in **--' stamp: 'LM 4/9/2022 14:36:05'!
+!III class methodsFor: '--** private fileout/in **--' stamp: 'BB 4/10/2022 21:56:40'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -214,14 +220,36 @@ II subclass: #IV
 IV class
 	instanceVariableNames: ''!
 
-!IV class methodsFor: '--** private fileout/in **--' stamp: 'LM 4/9/2022 14:36:05'!
+!IV class methodsFor: '--** private fileout/in **--' stamp: 'BB 4/10/2022 21:56:40'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := V.
+	previous := III.! !
+
+
+!classDefinition: #V category: 'Numeros-Naturales-Ejemplares'!
+II subclass: #V
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales-Ejemplares'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'V class' category: 'Numeros-Naturales-Ejemplares'!
+V class
+	instanceVariableNames: ''!
+
+!V class methodsFor: '--** private fileout/in **--' stamp: 'BB 4/10/2022 21:56:40'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
 	next := nil.
-	previous := III.! !
+	previous := IV.! !
 
 I initializeAfterFileIn!
 II initializeAfterFileIn!
 III initializeAfterFileIn!
 IV initializeAfterFileIn!
+V initializeAfterFileIn!
