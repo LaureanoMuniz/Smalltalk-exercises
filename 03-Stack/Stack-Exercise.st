@@ -136,6 +136,90 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 		
 ! !
 
+!OOStackTest methodsFor: 'test' stamp: 'LM 4/28/2022 15:29:43'!
+test11twoEmptyStacksAreEqual
+
+	
+	| stack otherStack |
+
+	stack := OOStack new.
+	otherStack := OOStack new.
+
+	self assert: (stack isEqualTo: otherStack ).
+! !
+
+!OOStackTest methodsFor: 'test' stamp: 'LM 4/28/2022 15:30:39'!
+test12twoStackWithSameElementsInSameOrderAreEqual
+
+	| stack otherStack  |
+
+	stack := OOStack new.
+	otherStack := OOStack new.
+	
+	otherStack push: 'holanda'.
+	otherStack push: 'hola'.
+	otherStack push: 'Smalltalk'.
+	
+	stack push: 'holanda'.
+	stack push: 'hola'.
+	stack push: 'Smalltalk'.
+
+	self assert: (stack isEqualTo: otherStack ).! !
+
+!OOStackTest methodsFor: 'test' stamp: 'LM 4/28/2022 15:31:11'!
+test13twoStackWithSameElementsInDifferentOrderAreNotEqual
+
+	| stack otherStack  |
+
+	stack := OOStack new.
+	otherStack := OOStack new.
+	
+	otherStack push: 'holanda'.
+	otherStack push: 'hola'.
+	otherStack push: 'Smalltalk'.
+	
+	stack push: 'hola'.
+	stack push: 'holanda'.
+	stack push: 'Smalltalk'.
+
+	self deny: (stack isEqualTo: otherStack ).! !
+
+!OOStackTest methodsFor: 'test' stamp: 'LM 4/28/2022 15:32:12'!
+test14twoStackWithDifferentElementsAreNotEqual
+
+	| stack otherStack  |
+
+	stack := OOStack new.
+	otherStack := OOStack new.
+	
+	otherStack push: 'holanda'.
+	otherStack push: 'Arroz'.
+	otherStack push: 'Smalltalk'.
+	
+	stack push: 'hola'.
+	stack push: 'holanda'.
+	stack push: 'Smalltalk'.
+
+	self deny: (stack isEqualTo: otherStack ).! !
+
+!OOStackTest methodsFor: 'test' stamp: 'LM 4/28/2022 15:33:42'!
+test15twoStackWithDifferentSizeAreNotEqual
+
+	| stack otherStack  |
+
+	stack := OOStack new.
+	otherStack := OOStack new.
+	
+	otherStack push: 'holanda'.
+	otherStack push: 'Smalltalk'.
+	
+	stack push: 'hola'.
+	stack push: 'holanda'.
+	stack push: 'Smalltalk'.
+	
+
+	self deny: (stack isEqualTo: otherStack ).! !
+
 
 !classDefinition: #SentenceFinderByPrefixTest category: 'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
@@ -143,6 +227,137 @@ TestCase subclass: #SentenceFinderByPrefixTest
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 4/28/2022 14:51:07'!
+test01stackHasElementsWithPrefix
+
+	| stack prefix expectedSentencesWithPrefix actualSentencesWithPrefix |
+
+	prefix := 'hola'.
+	expectedSentencesWithPrefix := OrderedCollection with: 'hola que tal' with: 'holanda' .
+	stack := OOStack new.
+	
+	stack push: 'holanda'.
+	stack push: 'hola que tal'.
+	stack push: 'la que tal'.
+
+	actualSentencesWithPrefix:= SentenceFinderByPrefix new findSentencesWithPrefix: prefix in: stack.
+
+	self assert: (expectedSentencesWithPrefix hasEqualElements: actualSentencesWithPrefix).
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 4/28/2022 14:51:12'!
+test02finderIsCaseSensitive
+
+	| stack prefix expectedSentencesWithPrefix actualSentencesWithPrefix |
+
+	prefix := 'HOLA'.
+	expectedSentencesWithPrefix := OrderedCollection with: 'HOLAnda' .
+	stack := OOStack new.
+	
+	stack push: 'HOLAnda'.
+	stack push: 'Hola que tal'.
+	stack push: 'la que tal'.
+
+	actualSentencesWithPrefix:= SentenceFinderByPrefix new findSentencesWithPrefix: prefix in: stack.
+
+	self assert: (expectedSentencesWithPrefix hasEqualElements: actualSentencesWithPrefix).
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 4/28/2022 14:51:17'!
+test03CannotFoundInEmptyStack
+	| stack prefix expectedSentencesWithPrefix actualSentencesWithPrefix |
+
+	prefix := 'HOLA'.
+	expectedSentencesWithPrefix := OrderedCollection new .
+	stack := OOStack new.
+	
+
+	actualSentencesWithPrefix:= SentenceFinderByPrefix new findSentencesWithPrefix: prefix in: stack.
+
+	self assert: (expectedSentencesWithPrefix hasEqualElements: actualSentencesWithPrefix).
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 4/28/2022 14:51:21'!
+test04CannotFoundInNotEmptyStack
+	| stack prefix expectedSentencesWithPrefix actualSentencesWithPrefix |
+
+	prefix := 'HOLA'.
+	expectedSentencesWithPrefix := OrderedCollection new .
+	stack := OOStack new.
+	stack push: 'Blas'.
+	stack push: 'Laureano'.
+
+	actualSentencesWithPrefix:= SentenceFinderByPrefix new findSentencesWithPrefix: prefix in: stack.
+
+	self assert: (expectedSentencesWithPrefix hasEqualElements: actualSentencesWithPrefix).
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 4/28/2022 14:51:27'!
+test05checkStackHasNotBeenModified
+	| stack otherStack prefix actualSentencesWithPrefix |
+
+	prefix := 'hola'.
+	stack := OOStack new.
+	otherStack := OOStack new.
+	
+	otherStack push: 'holanda'.
+	otherStack push: 'hola'.
+	otherStack push: 'Smalltalk'.
+	
+	stack push: 'holanda'.
+	stack push: 'hola'.
+	stack push: 'Smalltalk'.
+	
+	actualSentencesWithPrefix:= SentenceFinderByPrefix new findSentencesWithPrefix: prefix in: stack.
+	
+
+	self assert: (stack isEqualTo: otherStack ).
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 4/28/2022 14:51:45'!
+test06EmptyPrefixShouldFail
+	| stack prefix actualSentencesWithPrefix |
+
+	prefix := ''.
+	stack := OOStack new.
+	
+	stack push: 'holanda'.
+	stack push: 'hola'.
+	stack push: 'Smalltalk'.
+	
+	
+	
+	self
+		should: [ actualSentencesWithPrefix:= SentenceFinderByPrefix new findSentencesWithPrefix: prefix in: 				stack. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = SentenceFinderByPrefix InvalidPrefix].
+	
+
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LM 4/28/2022 14:52:12'!
+test07PrefixWithSpacesShouldFail
+	| stack prefix actualSentencesWithPrefix |
+
+	prefix := 'ho la'.
+	stack := OOStack new.
+	
+	stack push: 'holanda'.
+	stack push: 'hola'.
+	stack push: 'Smalltalk'.
+	
+	
+	
+	self
+		should: [ actualSentencesWithPrefix:= SentenceFinderByPrefix new findSentencesWithPrefix: prefix in: stack. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = SentenceFinderByPrefix InvalidPrefix].
+	
+
+! !
 
 
 !classDefinition: #Base category: 'Stack-Exercise'!
@@ -162,7 +377,12 @@ elementOnTopOfMe
 
 	^self error: OOStack stackEmptyErrorDescription.! !
 
-!Base methodsFor: 'as yet unclassified' stamp: 'BB 4/27/2022 00:12:50'!
+!Base methodsFor: 'as yet unclassified' stamp: 'BB 4/27/2022 18:05:58'!
+hasHolderUnderneath
+
+	^false.! !
+
+!Base methodsFor: 'as yet unclassified' stamp: 'LM 4/28/2022 12:35:26'!
 holderOnBottomOfMe
 
 	^nil.! !
@@ -185,15 +405,20 @@ elementOnTopOfMe
 
 	^elementOnTop.! !
 
+!ElementHolder methodsFor: 'as yet unclassified' stamp: 'BB 4/27/2022 18:05:43'!
+hasHolderUnderneath
+
+	^true.! !
+
 !ElementHolder methodsFor: 'as yet unclassified' stamp: 'BB 4/26/2022 23:51:27'!
 holderOnBottomOfMe
 
 	^holderOnBottom.! !
 
-!ElementHolder methodsFor: 'as yet unclassified' stamp: 'BB 4/26/2022 23:59:27'!
-initalizeWithElementOnTop: aString andHolderOnBottom: aHolder
+!ElementHolder methodsFor: 'as yet unclassified' stamp: 'LM 4/28/2022 15:45:43'!
+initalizeWithElementOnTop: anElement andHolderOnBottom: aHolder
 
-	elementOnTop:= aString.
+	elementOnTop:= anElement.
 	holderOnBottom := aHolder.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -202,10 +427,10 @@ initalizeWithElementOnTop: aString andHolderOnBottom: aHolder
 ElementHolder class
 	instanceVariableNames: ''!
 
-!ElementHolder class methodsFor: 'as yet unclassified' stamp: 'BB 4/26/2022 23:58:52'!
-withElementOnTop: aString andHolderOnBottom: aHolder
+!ElementHolder class methodsFor: 'as yet unclassified' stamp: 'LM 4/28/2022 15:49:57'!
+withElementOnTop: anElement andHolderOnBottom: aHolder
 
-	^self new initalizeWithElementOnTop: aString andHolderOnBottom: aHolder.! !
+	^self new initalizeWithElementOnTop: anElement andHolderOnBottom: aHolder.! !
 
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
@@ -214,6 +439,56 @@ Object subclass: #OOStack
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!OOStack methodsFor: 'comparing' stamp: 'LM 4/28/2022 12:33:13'!
+isEqualTo: aOOStack
+
+| selfCurrentHolder otherCurrentHolder|
+	
+	
+	selfCurrentHolder := self headElementHolder.
+	otherCurrentHolder := aOOStack headElementHolder.
+	
+	(self size = aOOStack size) ifFalse: [^false].
+	
+	[selfCurrentHolder hasHolderUnderneath] whileTrue: [
+		
+		(selfCurrentHolder elementOnTopOfMe = otherCurrentHolder elementOnTopOfMe)
+		ifFalse: 
+			[^ false].
+	
+		selfCurrentHolder := selfCurrentHolder holderOnBottomOfMe.
+		otherCurrentHolder  := otherCurrentHolder  holderOnBottomOfMe .
+	].
+
+	^true.! !
+
+
+!OOStack methodsFor: 'as yet unclassified' stamp: 'LM 4/28/2022 15:47:12'!
+findElementsWithPrefix: aPrefix 
+	
+	| currentHolder elementsThatBeginsWithPrefix |
+	
+	elementsThatBeginsWithPrefix := OrderedCollection new.
+	
+	currentHolder := self headElementHolder .
+	
+		[currentHolder hasHolderUnderneath] whileTrue: [
+		
+		
+		(currentHolder elementOnTopOfMe beginsWith: aPrefix) 
+		ifTrue: 
+			[elementsThatBeginsWithPrefix add: currentHolder elementOnTopOfMe].
+	
+		currentHolder := currentHolder holderOnBottomOfMe.
+	].
+
+	^elementsThatBeginsWithPrefix.! !
+
+!OOStack methodsFor: 'as yet unclassified' stamp: 'BB 4/27/2022 18:22:02'!
+headElementHolder
+
+	^head.! !
 
 !OOStack methodsFor: 'as yet unclassified' stamp: 'BB 4/27/2022 00:18:52'!
 initialize
@@ -239,12 +514,12 @@ pop
 
 	^oldHead elementOnTopOfMe.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'BB 4/27/2022 00:19:18'!
-push: aString
+!OOStack methodsFor: 'as yet unclassified' stamp: 'LM 4/28/2022 15:48:37'!
+push: anElement
 
 	size:= size + 1.
 
-	^head:= ElementHolder withElementOnTop: aString andHolderOnBottom: head.! !
+	head:= ElementHolder withElementOnTop: anElement andHolderOnBottom: head.! !
 
 !OOStack methodsFor: 'as yet unclassified' stamp: 'BB 4/27/2022 00:21:32'!
 size
@@ -274,3 +549,26 @@ Object subclass: #SentenceFinderByPrefix
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'LM 4/28/2022 14:58:49'!
+PrefixIsNotValid: aPrefix
+	
+	^ (aPrefix includesSubString: ' ') or: [(aPrefix isEmpty)].! !
+
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'LM 4/28/2022 15:35:18'!
+findSentencesWithPrefix: aPrefix in: aCollection 
+	
+	(self PrefixIsNotValid: aPrefix) ifTrue: [^self error: self class InvalidPrefix].
+	
+	^ aCollection findElementsWithPrefix: aPrefix.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SentenceFinderByPrefix class' category: 'Stack-Exercise'!
+SentenceFinderByPrefix class
+	instanceVariableNames: ''!
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'LM 4/27/2022 19:36:12'!
+InvalidPrefix
+	
+	^ 'Prefix cant be empty and must not contain spaces'! !
