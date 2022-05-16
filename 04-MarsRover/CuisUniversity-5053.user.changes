@@ -1,0 +1,3473 @@
+
+
+----QUIT----(28 January 2022 19:29:29) CuisUniversity-5053.image priorSource: 104232!
+
+----STARTUP---- (28 January 2022 19:29:30) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5053.image!
+
+
+----QUIT----(28 January 2022 19:29:30) CuisUniversity-5053.image priorSource: 4200777!
+
+----STARTUP---- (21 March 2022 20:18:59) as /home/clinux01/Cuis_University/linux64/CuisUniversity-5053.image!
+
+
+ObjectBuilder create: #Pipi
+	collaboratorNames: ''
+	in: 'DenotativeObject-Morph'
+	!
+
+!classDefinition: #Pipi category: 'DenotativeObject-Morph' stamp: 'AS 3/21/2022 20:25:28'!
+DenotativeObject subclass: #Pipi
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'DenotativeObject-Morph'!
+
+!classDefinition: 'Pipi class' category: 'DenotativeObject-Morph' stamp: 'AS 3/21/2022 20:25:28'!
+Pipi class
+	instanceVariableNames: ''!
+
+!classRemoval: #Pipi stamp: 'AS 3/21/2022 20:26:04'!
+DenotativeObject subclass: #Pipi
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'DenotativeObject-Morph'!
+
+ObjectBuilder create: #Paloma
+	collaboratorNames: ''
+	in: 'Actividad 1'
+	!
+
+!classDefinition: #Paloma category: 'Actividad 1' stamp: 'AS 3/21/2022 20:26:30'!
+DenotativeObject subclass: #Paloma
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 1'!
+
+!classDefinition: 'Paloma class' category: 'Actividad 1' stamp: 'AS 3/21/2022 20:26:30'!
+Paloma class
+	instanceVariableNames: ''!
+
+Paloma saludar.!
+!Paloma class methodsFor: 'all' stamp: 'AS 3/21/2022 20:29:20'!
+saludar
+	self shouldBeImplemented.! !
+!Paloma class methodsFor: 'all' stamp: 'AS 3/21/2022 20:31:36' prior: 50462972!
+saludar
+	 ^'pio'
+	! !
+
+Paloma saludar. !
+
+!classDefinition: #Jaz category: 'Workspace-Objects' stamp: 'AS 3/21/2022 20:42:56'!
+DenotativeObject subclass: #Jaz
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Workspace-Objects'!
+
+Jaz comer: 3!
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 20:43:07'!
+comer: aSmallInteger 
+	self shouldBeImplemented.! !
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 20:43:27' prior: 50462987!
+comer: unaCantidadDeBarrasDeChocolate
+	! !
+
+Jaz mover: 3!
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 20:43:52'!
+mover: aSmallInteger 
+	self shouldBeImplemented.! !
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 20:44:21' prior: 50462996!
+mover: unaCantidadDeCajas
+! !
+
+Jaz nivelDeEstres!
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 20:44:44'!
+nivelDeEstres
+	self shouldBeImplemented.! !
+
+!classDefinition: 'Jaz class' category: 'Workspace-Objects' stamp: 'AS 3/21/2022 20:45:02'!
+Jaz class
+	instanceVariableNames: 'nivelDeEstres'!
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 20:44:58' prior: 50463005!
+nivelDeEstres
+	^ nivelDeEstres! !
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 20:46:34' prior: 50462992!
+comer: unaCantidadDeBarrasDeChocolate
+	nivelDeEstres _ nivelDeEstres -1
+	! !
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 20:46:46' prior: 50463001!
+mover: unaCantidadDeCajas
+	nivelDeEstres _ nivelDeEstres +4
+	! !
+
+Jaz nivelDeEstres !
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 20:50:38' prior: 50463018!
+comer: unaCantidadDeBarrasDeChocolate
+	nivelDeEstres _ nivelDeEstres - (2 * unaCantidadDeBarrasDeChocolate )
+	
+	! !
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 20:52:12' prior: 50463023!
+mover: unaCantidadDeCajas
+	nivelDeEstres _ nivelDeEstres + 0.5.
+	nivelDeEstres _ nivelDeEstres + unaCantidadDeCajas.
+	
+	! !
+
+Jaz nivelDeEstres !
+
+Jaz comer: 4!
+
+Jaz nivelDeEstres !
+
+Jaz comer: 4!
+
+Jaz nivelDeEstres !
+
+Jaz mover: 1!
+
+Jaz nivelDeEstres !
+
+Jaz nivelDeEstres !
+
+Jaz comer: 3!
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 21:22:36' prior: 50463036!
+mover: unaCantidadDeCajas
+
+	(nivelDeEstres > 10)
+		ifFalse: [ ^ 'No quiero mover más cajas' ].
+		
+	nivelDeEstres _ nivelDeEstres + 0.5.
+	nivelDeEstres _ nivelDeEstres + unaCantidadDeCajas.
+	
+	! !
+
+Jaz nivelDeEstres !
+
+Jaz mover: 10!
+
+	(nivelDeEstres < -10)!
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 21:22:56' prior: 50463048!
+mover: unaCantidadDeCajas
+
+	(nivelDeEstres < -10)
+		ifFalse: [ ^ 'No quiero mover más cajas' ].
+		
+	nivelDeEstres _ nivelDeEstres + 0.5.
+	nivelDeEstres _ nivelDeEstres + unaCantidadDeCajas.
+	
+	! !
+
+Jaz mover: 10!
+
+Jaz nivelDeEstres !
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 21:23:08' prior: 50463059!
+mover: unaCantidadDeCajas
+
+	(nivelDeEstres < -10)
+		ifFalse: [ ^ 'No quiero mover más cajas' ].
+		
+	nivelDeEstres _ nivelDeEstres + 0.5.
+	nivelDeEstres _ nivelDeEstres + unaCantidadDeCajas.
+	
+	! !
+
+Jaz nivelDeEstres !
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 21:23:17' prior: 50463069!
+mover: unaCantidadDeCajas
+
+	(nivelDeEstres < -10)
+		ifTrue: [ ^ 'No quiero mover más cajas' ].
+		
+	nivelDeEstres _ nivelDeEstres + 0.5.
+	nivelDeEstres _ nivelDeEstres + unaCantidadDeCajas.
+	
+	! !
+
+Jaz nivelDeEstres !
+
+Jaz mover: 20!
+
+Jaz nivelDeEstres !
+
+Jaz nivelDeEstres !
+
+Jaz mover: 0!
+!Jaz class methodsFor: 'acciones' stamp: 'AS 3/21/2022 21:23:55' prior: 50463079!
+mover: unaCantidadDeCajas
+
+	(nivelDeEstres > 10)
+		ifTrue: [ ^ 'No quiero mover más cajas' ].
+		
+	nivelDeEstres _ nivelDeEstres + 0.5.
+	nivelDeEstres _ nivelDeEstres + unaCantidadDeCajas.
+	
+	! !
+
+Jaz mover: 0!
+
+Jaz nivelDeEstres !
+
+Jaz comer: 50!
+
+Jaz nivelDeEstres !
+
+Jaz mover: 30!
+
+Jaz nivelDeEstres !
+
+Jaz comer: 100!
+
+Jaz nivelDeEstres!
+
+Jaz mover: 100!
+
+Jaz nivelDeEstres !
+
+Jaz comer: 100!
+
+Jaz nivelDeEstres !
+
+Jaz mover: 400!
+
+Jaz nivelDeEstres !
+
+Jaz mover: 0!
+
+----End fileIn of /home/clinux01/Cuis_University/linux64/Packages/TerseGuide.pck.st----!
+!Jaz class methodsFor: '--** private fileout/in **--' stamp: 'AS 3/21/2022 21:39:09' overrides: 50443097!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	nivelDeEstres := 45.0.! !
+
+!methodRemoval: Jaz class #initializeCollaboratorsFromFile stamp: 'AS 3/21/2022 21:39:09'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	nivelDeEstres := 45.0.!
+
+----SNAPSHOT----(21 March 2022 21:40:38) CuisUniversity-5053.image priorSource: 4201005!
+
+----STARTUP---- (31 March 2022 20:15:09) as /home/clinux01/Cuis_University/linux64/CuisUniversity-5053.image!
+
+
+ObjectBuilder create: #d1
+	collaboratorNames: ''
+	in: 'num'
+	!
+
+!classDefinition: #d1 category: 'num' stamp: 'AS 3/31/2022 20:53:55'!
+DenotativeObject subclass: #d1
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'num'!
+
+!classDefinition: 'd1 class' category: 'num' stamp: 'AS 3/31/2022 20:53:55'!
+d1 class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #d1
+	collaboratorNames: ''
+	in: 'num'
+	!
+
+!classDefinition: #d1 category: 'num' stamp: 'AS 3/31/2022 20:53:57'!
+DenotativeObject subclass: #d1
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'num'!
+
+!classDefinition: 'd1 class' category: 'num' stamp: 'AS 3/31/2022 20:53:57'!
+d1 class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: 1
+	collaboratorNames: ''
+	in: 'Actividad 2'!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 20:59:10'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 20:59:10'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'NumNat'
+	!
+
+!classDefinition: #Test category: 'NumNat' stamp: 'AS 3/31/2022 20:59:30'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'NumNat'!
+
+!classDefinition: 'Test class' category: 'NumNat' stamp: 'AS 3/31/2022 20:59:30'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'NumNat'
+	!
+
+!classDefinition: #Test category: 'NumNat' stamp: 'AS 3/31/2022 20:59:32'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'NumNat'!
+
+!classDefinition: 'Test class' category: 'NumNat' stamp: 'AS 3/31/2022 20:59:32'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'NumNat'
+	!
+
+!classDefinition: #Test category: 'NumNat' stamp: 'AS 3/31/2022 20:59:36'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'NumNat'!
+
+!classDefinition: 'Test class' category: 'NumNat' stamp: 'AS 3/31/2022 20:59:36'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'NumNat'
+	!
+
+!classDefinition: #Test category: 'NumNat' stamp: 'AS 3/31/2022 20:59:37'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'NumNat'!
+
+!classDefinition: 'Test class' category: 'NumNat' stamp: 'AS 3/31/2022 20:59:37'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'NumNat'
+	!
+
+!classDefinition: #Test category: 'NumNat' stamp: 'AS 3/31/2022 20:59:38'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'NumNat'!
+
+!classDefinition: 'Test class' category: 'NumNat' stamp: 'AS 3/31/2022 20:59:38'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 20:59:56'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 20:59:56'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 20:59:57'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 20:59:57'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 20:59:58'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 20:59:58'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:05'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:05'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:06'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:06'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:06'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:06'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:06'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:06'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:06'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:06'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:07'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:07'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:10'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:10'!
+Test class
+	instanceVariableNames: ''!
+
+----STARTUP---- (31 March 2022 21:00:22) as /home/clinux01/Cuis_University/linux64/CuisUniversity-5053.image!
+
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:34'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 21:00:34'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'NumNat'
+	!
+
+!classDefinition: #Test category: 'NumNat' stamp: 'AS 3/31/2022 21:00:41'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'NumNat'!
+
+!classDefinition: 'Test class' category: 'NumNat' stamp: 'AS 3/31/2022 21:00:41'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'NumNat'
+	!
+
+!classDefinition: #Test category: 'NumNat' stamp: 'AS 3/31/2022 21:00:42'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'NumNat'!
+
+!classDefinition: 'Test class' category: 'NumNat' stamp: 'AS 3/31/2022 21:00:42'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'NumNat'
+	!
+
+!classDefinition: #Test category: 'NumNat' stamp: 'AS 3/31/2022 21:00:43'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'NumNat'!
+
+!classDefinition: 'Test class' category: 'NumNat' stamp: 'AS 3/31/2022 21:00:43'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'NumNat'
+	!
+
+!classDefinition: #Test category: 'NumNat' stamp: 'AS 3/31/2022 21:00:43'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'NumNat'!
+
+!classDefinition: 'Test class' category: 'NumNat' stamp: 'AS 3/31/2022 21:00:43'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'NumNat'
+	!
+
+!classDefinition: #Test category: 'NumNat' stamp: 'AS 3/31/2022 21:00:44'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'NumNat'!
+
+!classDefinition: 'Test class' category: 'NumNat' stamp: 'AS 3/31/2022 21:00:44'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 21:01:00'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 21:01:00'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #Test
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #Test category: 'Actividad 2' stamp: 'AS 3/31/2022 21:01:01'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'Test class' category: 'Actividad 2' stamp: 'AS 3/31/2022 21:01:01'!
+Test class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #I
+	collaboratorNames: ''
+	in: 'Actividad 2'
+	!
+
+!classDefinition: #I category: 'Actividad 2' stamp: 'AS 3/31/2022 21:05:39'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classDefinition: 'I class' category: 'Actividad 2' stamp: 'AS 3/31/2022 21:05:39'!
+I class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #I
+	collaboratorNames: ''
+	in: 'Naturales'
+	!
+
+!classDefinition: #I category: 'Naturales' stamp: 'AS 3/31/2022 21:05:46'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Naturales'!
+
+!classDefinition: 'I class' category: 'Naturales' stamp: 'AS 3/31/2022 21:05:46'!
+I class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #I
+	collaboratorNames: ''
+	in: 'Naturales'
+	!
+
+!classDefinition: #I category: 'Naturales' stamp: 'AS 3/31/2022 21:05:46'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Naturales'!
+
+!classDefinition: 'I class' category: 'Naturales' stamp: 'AS 3/31/2022 21:05:46'!
+I class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #I
+	collaboratorNames: ''
+	in: 'Naturales'
+	!
+
+!classDefinition: #I category: 'Naturales' stamp: 'AS 3/31/2022 21:05:47'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Naturales'!
+
+!classDefinition: 'I class' category: 'Naturales' stamp: 'AS 3/31/2022 21:05:47'!
+I class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #I
+	collaboratorNames: ''
+	in: 'Naturales'
+	!
+
+!classDefinition: #I category: 'Naturales' stamp: 'AS 3/31/2022 21:05:47'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Naturales'!
+
+!classDefinition: 'I class' category: 'Naturales' stamp: 'AS 3/31/2022 21:05:47'!
+I class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #I
+	collaboratorNames: ''
+	in: 'Naturales'
+	!
+
+!classDefinition: #I category: 'Naturales' stamp: 'AS 3/31/2022 21:05:47'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Naturales'!
+
+!classDefinition: 'I class' category: 'Naturales' stamp: 'AS 3/31/2022 21:05:47'!
+I class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #I
+	collaboratorNames: ''
+	in: 'Naturales'
+	!
+
+!classDefinition: #I category: 'Naturales' stamp: 'AS 3/31/2022 21:05:47'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Naturales'!
+
+!classDefinition: 'I class' category: 'Naturales' stamp: 'AS 3/31/2022 21:05:47'!
+I class
+	instanceVariableNames: ''!
+
+!classRemoval: #Paloma stamp: 'AS 3/31/2022 21:06:37'!
+DenotativeObject subclass: #Paloma
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 1'!
+
+!classRemoval: #Test stamp: 'AS 3/31/2022 21:06:46'!
+DenotativeObject subclass: #Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classRemoval: #Jaz stamp: 'AS 3/31/2022 21:06:46'!
+DenotativeObject subclass: #Jaz
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+ObjectBuilder create: #II
+	collaboratorNames: ''
+	in: 'Naturales'
+	!
+
+!classDefinition: #II category: 'Naturales' stamp: 'AS 3/31/2022 21:07:00'!
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Naturales'!
+
+!classDefinition: 'II class' category: 'Naturales' stamp: 'AS 3/31/2022 21:07:00'!
+II class
+	instanceVariableNames: ''!
+
+next
+
+
+	^2!
+
+s!
+
+----STARTUP---- (4 April 2022 20:22:43) as /home/clinux01/Cuis_University/linux64/CuisUniversity-5053.image!
+
+
+!classRemoval: #Jaz stamp: 'AS 4/4/2022 20:23:02'!
+DenotativeObject subclass: #Jaz
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 2'!
+
+!classRemoval: #Paloma stamp: 'AS 4/4/2022 20:23:05'!
+DenotativeObject subclass: #Paloma
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Actividad 1'!
+
+----End fileIn of /home/clinux01/Cuis_University/linux64/Numeros-Naturales.st----!
+!II class methodsFor: 'operaciones' stamp: 'AS 4/4/2022 20:25:19'!
+* unNatural
+
+	^(previous * unNatural) + unNatural.! !
+!I class methodsFor: 'operations' stamp: 'AS 4/4/2022 20:25:35'!
+* aNatural
+
+	^aNatural.! !
+!II class methodsFor: 'operaciones' stamp: 'AS 4/4/2022 20:28:33' prior: 50466108!
+- sustraendo
+	^sustraendo sustraeteDe: self.! !
+!II class methodsFor: 'operaciones' stamp: 'AS 4/4/2022 20:30:05'!
+sustraeteDe: minuendo
+	^ minuendo previous - self previous.! !
+!I class methodsFor: 'operations' stamp: 'AS 4/4/2022 20:30:28'!
+sustraeteDe: minuendo
+	^ minuendo previous.! !
+!II class methodsFor: 'operaciones' stamp: 'AS 4/4/2022 20:32:39'!
+/ divisor
+	^ divisor divideA self.! !
+!II class methodsFor: 'operaciones' stamp: 'AS 4/4/2022 20:33:46' prior: 50466237!
+/ divisor
+	^ divisor divideA: self.! !
+!II class methodsFor: 'operaciones' stamp: 'AS 4/4/2022 20:37:15'!
+divideA: dividendo
+	^ I + (dividendo-self / self). ! !
+!II class methodsFor: 'operaciones' stamp: 'AS 4/4/2022 20:37:31' prior: 50466217!
+* unNatural
+	^(previous * unNatural) + unNatural.! !
+!II class methodsFor: 'operaciones' stamp: 'AS 4/4/2022 20:42:15' prior: 50466245!
+divideA: dividendo
+	(dividendo-self >= self) ifTrue:[^ I + (dividendo-self / self)].
+	^ I. ! !
+!I class methodsFor: 'operations' stamp: 'AS 4/4/2022 20:43:46'!
+divideA: dividendo
+	^ dividendo.! !
+!I class methodsFor: 'comparaciones' stamp: 'AS 4/4/2022 20:44:32'!
+>= aNumber
+	^ aNumber = I.! !
+!II class methodsFor: 'comparaciones' stamp: 'AS 4/4/2022 20:45:44'!
+>= aNumber
+	self previous >= (aNumber previous).! !
+
+8/3.!
+
+IIIII + IIIII.!
+
+!classDefinition: #IIIIII category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 20:46:09'!
+II subclass: #IIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'IIIIII class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 20:46:09'!
+IIIIII class
+	instanceVariableNames: ''!
+
+!classDefinition: #IIIIIII category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 20:46:09'!
+II subclass: #IIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'IIIIIII class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 20:46:09'!
+IIIIIII class
+	instanceVariableNames: ''!
+
+!classDefinition: #IIIIIIII category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 20:46:09'!
+II subclass: #IIIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'IIIIIIII class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 20:46:09'!
+IIIIIIII class
+	instanceVariableNames: ''!
+
+!classDefinition: #IIIIIIIII category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 20:46:09'!
+II subclass: #IIIIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'IIIIIIIII class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 20:46:09'!
+IIIIIIIII class
+	instanceVariableNames: ''!
+
+!classDefinition: #IIIIIIIIII category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 20:46:09'!
+II subclass: #IIIIIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'IIIIIIIIII class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 20:46:09'!
+IIIIIIIIII class
+	instanceVariableNames: ''!
+
+IIIIIIIIII / III.!
+!II class methodsFor: 'operaciones' stamp: 'AS 4/4/2022 20:47:51' prior: 50466255!
+divideA: dividendo
+	(dividendo >= II * self) ifTrue:[^ I + (dividendo-self / self)].
+	^ I. ! !
+
+IIIIIIIIII / III.!
+!II class methodsFor: 'operaciones' stamp: 'AS 4/4/2022 20:48:29' prior: 50466330!
+divideA: dividendo
+	dividendo >= (II * self) ifTrue:[^ I + (dividendo-self / self)].
+	^ I. ! !
+
+IIIIIIIIII / III.!
+!II class methodsFor: 'comparaciones' stamp: 'AS 4/4/2022 20:51:07' prior: 50466268!
+>= aNumber
+	aNumber = I ifTrue:[^ True].
+	self previous >= (aNumber previous).! !
+
+IIIIIIIIII / III.!
+
+IIIIIIIIII / III.!
+
+IIIIIIIIII / III.!
+
+IIIIIIIIII / III.!
+
+!classRemoval: #IIIIIIIIII stamp: 'AS 4/4/2022 20:56:16'!
+II subclass: #IIIIIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classRemoval: #IIIIIIIII stamp: 'AS 4/4/2022 20:56:23'!
+II subclass: #IIIIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classRemoval: #IIIIIIII stamp: 'AS 4/4/2022 20:56:27'!
+II subclass: #IIIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classRemoval: #IIIIIII stamp: 'AS 4/4/2022 20:56:43'!
+II subclass: #IIIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classRemoval: #IIIIII stamp: 'AS 4/4/2022 20:56:47'!
+II subclass: #IIIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+next := nil.!
+
+previous := nil.!
+
+!methodRemoval: IIIII class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 20:58:32'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := nil.
+	previous := IIII.!
+
+!methodRemoval: IIII class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 20:58:50'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := IIIII.
+	previous := III.!
+
+!classRemoval: #IIIII stamp: 'AS 4/4/2022 20:58:53'!
+II subclass: #IIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!methodRemoval: III class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 20:59:06'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := IIII.
+	previous := II.!
+
+!methodRemoval: II class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 20:59:13'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := III.
+	previous := I.!
+
+!classRemoval: #IIII stamp: 'AS 4/4/2022 20:59:17'!
+II subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classRemoval: #III stamp: 'AS 4/4/2022 20:59:20'!
+II subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+!II class methodsFor: 'next & previous' stamp: 'AS 4/4/2022 21:04:14'!
+nameOfNext
+	(self name endsWith: 'III') ifTrue:[^ (self name withoutSuffix: 'III') , 'IV'].
+	(self name endsWith: 'IV') ifTrue:[^ (self name withoutSuffix: 'IV') , 'V'].
+	! !
+!II class methodsFor: 'next & previous' stamp: 'AS 4/4/2022 21:04:40' prior: 50466113!
+next
+	next ifNotNil:[^next].
+	next _ II createChildNamed: (self nameOfNext).
+	next previous: self.
+	^next! !
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 21:09:12'!
+ifNameHas: suffix replaceWith: replacement andCall: closure 
+	(self name endsWith: suffix) ifTrue:[closure value: (self name withoutSuffix: suffix) , replacement].
+	(self name endsWith: 'IV') ifTrue:[^ (self name withoutSuffix: 'IV') , 'V'].
+	! !
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 21:11:13'!
+ifNameHasSuffix: suffix replaceWith: replacement andCall: closure 
+	(self name endsWith: suffix) ifTrue:[closure value: (self name withoutSuffix: suffix) , replacement].
+	(self name endsWith: 'IV') ifTrue:[^ (self name withoutSuffix: 'IV') , 'V'].
+	! !
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 21:11:20' prior: 50466451!
+ifNameHasSuffix: suffix replaceWith: replacement andCall: closure 
+	(self name endsWith: suffix) ifTrue:[closure value: (self name withoutSuffix: suffix) , replacement].
+	! !
+
+!methodRemoval: II class #ifNameHas:replaceWith:andCall: stamp: 'AS 4/4/2022 21:11:30'!
+ifNameHas: suffix replaceWith: replacement andCall: closure 
+	(self name endsWith: suffix) ifTrue:[closure value: (self name withoutSuffix: suffix) , replacement].
+	(self name endsWith: 'IV') ifTrue:[^ (self name withoutSuffix: 'IV') , 'V'].
+	!
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 21:15:37' prior: 50466426!
+nameOfNext
+	self ifNameHasSuffix: 'III' replaceWith: 'IV' andCall: [:nameOfNext | ^ nameOfNext].! !
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 21:17:54' prior: 50466481!
+nameOfNext
+	|returnNameOfNext|
+	returnNameOfNext := [:nameOfNext | ^ nameOfNext].
+	self ifNameHasSuffix: 'III' replaceWith: 'IV' andCall: returnNameOfNext.
+	! !
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 21:20:24' prior: 50466487!
+nameOfNext
+	|returnNameOfNext|
+	returnNameOfNext := [:nameOfNext | ^ nameOfNext].
+	self ifNameHasSuffix: 'VIII' replaceWith: 'IX' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'IX' replaceWith: 'X' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'III' replaceWith: 'IV' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'IV' replaceWith: 'V' andCall: returnNameOfNext.
+	^ self name , 'I'.! !
+
+II + II.!
+
+!classDefinition: #AnObsoleteIV category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:20:36'!
+II subclass: #AnObsoleteIV
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'AnObsoleteIV class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:20:36'!
+AnObsoleteIV class
+	instanceVariableNames: ''!
+
+!classRemoval: #AnObsoleteIV stamp: 'AS 4/4/2022 21:20:46'!
+II subclass: #AnObsoleteIV
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+next := nil.!
+
+II + II.!
+
+!classDefinition: #III category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:01'!
+II subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'III class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:01'!
+III class
+	instanceVariableNames: ''!
+
+!classDefinition: #IV category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:01'!
+II subclass: #IV
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'IV class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:01'!
+IV class
+	instanceVariableNames: ''!
+
+IV + IV.!
+
+!classDefinition: #V category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:11'!
+II subclass: #V
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'V class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:11'!
+V class
+	instanceVariableNames: ''!
+
+!classDefinition: #VI category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:11'!
+II subclass: #VI
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'VI class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:11'!
+VI class
+	instanceVariableNames: ''!
+
+!classDefinition: #VII category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:11'!
+II subclass: #VII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'VII class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:11'!
+VII class
+	instanceVariableNames: ''!
+
+!classDefinition: #VIII category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:11'!
+II subclass: #VIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'VIII class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:11'!
+VIII class
+	instanceVariableNames: ''!
+
+VIII + VIII.!
+
+!classDefinition: #IX category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+II subclass: #IX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'IX class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+IX class
+	instanceVariableNames: ''!
+
+!classDefinition: #X category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+II subclass: #X
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'X class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+X class
+	instanceVariableNames: ''!
+
+!classDefinition: #XI category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+II subclass: #XI
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'XI class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+XI class
+	instanceVariableNames: ''!
+
+!classDefinition: #XII category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+II subclass: #XII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'XII class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+XII class
+	instanceVariableNames: ''!
+
+!classDefinition: #XIII category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+II subclass: #XIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'XIII class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+XIII class
+	instanceVariableNames: ''!
+
+!classDefinition: #XIV category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+II subclass: #XIV
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'XIV class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+XIV class
+	instanceVariableNames: ''!
+
+!classDefinition: #XV category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+II subclass: #XV
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'XV class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+XV class
+	instanceVariableNames: ''!
+
+!classDefinition: #XVI category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+II subclass: #XVI
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'XVI class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:21:32'!
+XVI class
+	instanceVariableNames: ''!
+!II class methodsFor: 'removeAll' stamp: 'AS 4/4/2022 21:24:57'!
+removeAllNext
+	next ifNotNil: 
+	[
+		next removeAllNext.
+		next removeFromSystem.
+		next := nil.
+	]! !
+
+II + II.!
+
+II + IV.!
+
+II + VIII.!
+
+II + XVI.!
+
+!classDefinition: #XVII category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:26:46'!
+II subclass: #XVII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'XVII class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:26:46'!
+XVII class
+	instanceVariableNames: ''!
+
+!classDefinition: #XVIII category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:26:46'!
+II subclass: #XVIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numeros-Naturales'!
+
+!classDefinition: 'XVIII class' category: 'Numeros-Naturales' stamp: 'AS 4/4/2022 21:26:46'!
+XVIII class
+	instanceVariableNames: ''!
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 21:32:36' prior: 50466495!
+nameOfNext
+	|returnNameOfNext|
+	returnNameOfNext := [:nameOfNext | ^ nameOfNext].
+	self ifNameHasSuffix: 'VIII' replaceWith: 'IX' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'VIII' replaceWith: 'IX' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'VIII' replaceWith: 'IX' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'VIII' replaceWith: 'IX' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'VIII' replaceWith: 'IX' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'VIII' replaceWith: 'IX' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'IX' replaceWith: 'X' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'III' replaceWith: 'IV' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'IV' replaceWith: 'V' andCall: returnNameOfNext.
+	^ self name , 'I'.! !
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 21:38:27' prior: 50466706!
+nameOfNext
+	|returnNameOfNext|
+	returnNameOfNext := [:nameOfNext | ^ nameOfNext].
+	self ifNameHasSuffix: 'VIII' replaceWith: 'IX' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'XCIX' replaceWith: 'C' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'LXXXIX' replaceWith: 'XC' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'XLIX' replaceWith: 'L' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'XXXIX' replaceWith: 'XL' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'VIII' replaceWith: 'IX' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'IX' replaceWith: 'X' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'III' replaceWith: 'IV' andCall: returnNameOfNext.
+	self ifNameHasSuffix: 'IV' replaceWith: 'V' andCall: returnNameOfNext.
+	^ self name , 'I'.! !
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 21:41:08'!
+if: string HasSuffix: suffix replaceWith: replacement 
+	(string endsWith: suffix) ifTrue:[^(string withoutSuffix: suffix) , replacement].
+	^ string.
+	! !
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 21:42:54' prior: 50466733!
+nameOfNext
+	|nameOfNext|
+	nameOfNext := self name , 'I'.
+	nameOfNext := 	self if: nameOfNext HasSuffix: 'VIII' replaceWith: 'IX'.
+	! !
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 21:49:07' prior: 50466768!
+nameOfNext
+	|nameOfNext|
+	nameOfNext := self name , 'I'.
+	nameOfNext := 	self if: nameOfNext HasSuffix: 'IIII' replaceWith: 'IV'.
+	nameOfNext := 	self if: nameOfNext HasSuffix: 'IVI' replaceWith: 'V'.
+	nameOfNext := 	self if: nameOfNext HasSuffix: 'VIIII' replaceWith: 'IX'.
+	nameOfNext := 	self if: nameOfNext HasSuffix: 'IXI' replaceWith: 'X'.
+	nameOfNext := 	self if: nameOfNext HasSuffix: 'XXXX' replaceWith: 'XL'.
+	nameOfNext := 	self if: nameOfNext HasSuffix: 'XLX' replaceWith: 'L'.
+	nameOfNext := 	self if: nameOfNext HasSuffix: 'LXL' replaceWith: 'XC'.
+	nameOfNext := 	self if: nameOfNext HasSuffix: 'XCX' replaceWith: 'C'.
+	^ nameOfNext.! !
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 22:01:25' prior: 50466775!
+nameOfNext
+	|nameOfNext executeRule|
+	
+	nameOfNext := self name , 'I'.
+	executeRule := [:a :b | nameOfNext := 	self if: nameOfNext HasSuffix: a replaceWith: b.].
+	
+	
+	executeRule value: 'IIII' value: 'IV'.
+	executeRule value: 'IVI' value: 'V'.
+	executeRule value: 'VIV' value: 'IX'.
+	executeRule value: 'IXI' value: 'X'.
+	executeRule value: 'XXXX' value: 'XL'.
+	executeRule value: 'XLX' value: 'L'.
+	executeRule value: 'LXL' value: 'XC'.
+	executeRule value: 'LXL' value: 'XC'.
+	executeRule value: 'XCX' value: 'C'.	
+	^ nameOfNext.! !
+!II class methodsFor: 'nameManipulation' stamp: 'AS 4/4/2022 22:01:30' prior: 50466799!
+nameOfNext
+	|nameOfNext executeRule|
+	
+	nameOfNext := self name , 'I'.
+	executeRule := [:a :b | nameOfNext := 	self if: nameOfNext HasSuffix: a replaceWith: b.].
+	
+	executeRule value: 'IIII' value: 'IV'.
+	executeRule value: 'IVI' value: 'V'.
+	executeRule value: 'VIV' value: 'IX'.
+	executeRule value: 'IXI' value: 'X'.
+	executeRule value: 'XXXX' value: 'XL'.
+	executeRule value: 'XLX' value: 'L'.
+	executeRule value: 'LXL' value: 'XC'.
+	executeRule value: 'LXL' value: 'XC'.
+	executeRule value: 'XCX' value: 'C'.	
+	^ nameOfNext.! !
+!II class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50443097!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := III.
+	previous := I.! !
+!III class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := IV.
+	previous := II.! !
+!IV class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := V.
+	previous := III.! !
+!IX class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := X.
+	previous := VIII.! !
+!V class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := VI.
+	previous := IV.! !
+!VI class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := VII.
+	previous := V.! !
+!VII class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := VIII.
+	previous := VI.! !
+!VIII class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := IX.
+	previous := VII.! !
+!X class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XI.
+	previous := IX.! !
+!XI class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XII.
+	previous := X.! !
+!XII class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XIII.
+	previous := XI.! !
+!XIII class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XIV.
+	previous := XII.! !
+!XIV class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XV.
+	previous := XIII.! !
+!XV class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XVI.
+	previous := XIV.! !
+!XVI class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XVII.
+	previous := XV.! !
+!XVII class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XVIII.
+	previous := XVI.! !
+!XVIII class methodsFor: '--** private fileout/in **--' stamp: 'AS 4/4/2022 22:01:38' overrides: 50466839!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := nil.
+	previous := XVII.! !
+
+!methodRemoval: II class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := III.
+	previous := I.!
+
+!methodRemoval: III class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := IV.
+	previous := II.!
+
+!methodRemoval: IV class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := V.
+	previous := III.!
+
+!methodRemoval: IX class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := X.
+	previous := VIII.!
+
+!methodRemoval: V class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := VI.
+	previous := IV.!
+
+!methodRemoval: VI class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := VII.
+	previous := V.!
+
+!methodRemoval: VII class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := VIII.
+	previous := VI.!
+
+!methodRemoval: VIII class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := IX.
+	previous := VII.!
+
+!methodRemoval: X class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XI.
+	previous := IX.!
+
+!methodRemoval: XI class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XII.
+	previous := X.!
+
+!methodRemoval: XII class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XIII.
+	previous := XI.!
+
+!methodRemoval: XIII class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XIV.
+	previous := XII.!
+
+!methodRemoval: XIV class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XV.
+	previous := XIII.!
+
+!methodRemoval: XV class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XVI.
+	previous := XIV.!
+
+!methodRemoval: XVI class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XVII.
+	previous := XV.!
+
+!methodRemoval: XVII class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := XVIII.
+	previous := XVI.!
+
+!methodRemoval: XVIII class #initializeCollaboratorsFromFile stamp: 'AS 4/4/2022 22:01:38'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	next := nil.
+	previous := XVII.!
+
+----STARTUP---- (7 April 2022 20:21:51) as /home/clinux01/Cuis_University/linux64/CuisUniversity-5053.image!
+
+
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-Colecciones'!
+
+!classDefinition: #XXX category: 'Ejercicio-Colecciones' stamp: 'AS 4/7/2022 20:23:39'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-Colecciones'!
+
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Excercise'!
+
+!classDefinition: #XXX category: 'Collection-Excercise' stamp: 'AS 4/7/2022 20:26:40'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Excercise'!
+
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Exercise'!
+
+!classDefinition: #XXX category: 'Collection-Exercise' stamp: 'AS 4/7/2022 20:26:55'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Exercise'!
+
+!classRemoval: #XXX stamp: 'AS 4/7/2022 20:27:04'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Exercise'!
+
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Excercise'!
+
+!classDefinition: #XXX category: 'Collection-Excercise' stamp: 'AS 4/7/2022 20:27:15'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Excercise'!
+
+XXX!
+
+self new!
+
+ a XXX !
+!XXX methodsFor: 'no messages' stamp: 'AS 4/7/2022 20:37:20'!
+findOddsPart0
+
+	| elements index odds |
+	
+	elements:= #(1 2 5 6 9).
+	
+	odds := OrderedCollection new.
+	index := 1.
+	
+	[index <= elements size]
+	whileTrue: [
+		((elements at: index) odd) ifTrue: [odds add: (elements at: index)].
+		index := index + 1.
+		].
+	^odds! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 20:44:14'!
+findOddsPart1
+
+	| elements index odds |
+	
+	elements:= #(1 2 5 6 9).
+	
+	odds := OrderedCollection new.
+	index := 1.
+	
+	[index <= elements size]
+	whileTrue: [
+		((elements at: index) odd) ifTrue: [odds add: (elements at: index)].
+		index := index + 1.
+		].
+	^odds! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 20:51:37' prior: 50466109!
+findOddsPart1
+
+	| elements odds |
+	
+	elements:= #(1 2 5 6 9).
+	
+	odds := OrderedCollection new.
+	elements do: [:each | each even ifTrue: [odds add:each]].
+	^odds! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 20:52:12' prior: 50466120!
+findOddsPart1
+
+	| elements odds |
+	
+	elements:= #(1 2 5 6 9).
+	
+	odds := OrderedCollection new.
+	elements do: [:each | each even ifTrue: [odds add:each]].
+	^odds! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 20:53:44' prior: 50466128!
+findOddsPart1
+
+	| elements odds |
+	
+	elements:= #(1 2 5 6 9).
+	
+	odds := OrderedCollection new.
+	elements do: [:each | each even ifTrue: [odds add:each]].
+	^odds! !
+
+#(1 2 5 6 9)!
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 20:54:25' prior: 50466136!
+findOddsPart1
+
+	| elements odds |
+	
+	elements:= #(1 2 5 6 9).
+	
+	odds := OrderedCollection new.
+	elements do: [:each | each even ifTrue: [odds add:each]].
+	^odds! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 21:05:56'!
+findDoubles
+
+	| elements |
+	
+	elements:= #(1 2 5 6 9).
+	
+	^elements select: [:each | each odd]! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 21:12:25'!
+findDoubles1
+
+	| elements |
+	
+	elements:= #(1 2 5 6 9).
+	
+	^elements collect: [:each | each * 2]! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 21:16:39'!
+findFirstEven
+
+	| elements |
+	
+	elements:= #(1 2 5 6 9).
+	
+	^elements detect: [:each | each even]! !
+
+----STARTUP---- (9 May 2022 18:12:37) as /home/clinux01/Cuis_University/linux64/CuisUniversity-5053.image!
+
+
+!classDefinition: #XXX category: 'Ejercicio-Colecciones' stamp: 'AS 5/9/2022 18:12:39'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-Colecciones'!
+
+!classDefinition: #XXX category: 'Ejercicio-Colecciones' stamp: 'AS 5/9/2022 18:12:39'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Ejercicio-Colecciones'!
+
+!classDefinition: #XXX category: 'Collection-Excercise' stamp: 'AS 5/9/2022 18:12:39'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Excercise'!
+
+!classDefinition: #XXX category: 'Collection-Excercise' stamp: 'AS 5/9/2022 18:12:39'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Excercise'!
+
+!classDefinition: #XXX category: 'Collection-Exercise' stamp: 'AS 5/9/2022 18:12:39'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Exercise'!
+
+!classDefinition: #XXX category: 'Collection-Exercise' stamp: 'AS 5/9/2022 18:12:39'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Exercise'!
+
+!classRemoval: #XXX stamp: 'AS 5/9/2022 18:12:40'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Exercise'!
+
+!classDefinition: #XXX category: 'Collection-Excercise' stamp: 'AS 5/9/2022 18:12:40'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Excercise'!
+
+!classDefinition: #XXX category: 'Collection-Excercise' stamp: 'AS 5/9/2022 18:12:40'!
+Object subclass: #XXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Collection-Excercise'!
+!XXX methodsFor: 'no messages' stamp: 'AS 4/7/2022 20:37:20'!
+findOddsPart0
+
+	| elements index odds |
+	
+	elements:= #(1 2 5 6 9).
+	
+	odds := OrderedCollection new.
+	index := 1.
+	
+	[index <= elements size]
+	whileTrue: [
+		((elements at: index) odd) ifTrue: [odds add: (elements at: index)].
+		index := index + 1.
+		].
+	^odds! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 20:44:14'!
+findOddsPart1
+
+	| elements index odds |
+	
+	elements:= #(1 2 5 6 9).
+	
+	odds := OrderedCollection new.
+	index := 1.
+	
+	[index <= elements size]
+	whileTrue: [
+		((elements at: index) odd) ifTrue: [odds add: (elements at: index)].
+		index := index + 1.
+		].
+	^odds! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 20:51:37' prior: 50466245!
+findOddsPart1
+
+	| elements odds |
+	
+	elements:= #(1 2 5 6 9).
+	
+	odds := OrderedCollection new.
+	elements do: [:each | each even ifTrue: [odds add:each]].
+	^odds! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 20:52:12' prior: 50466256!
+findOddsPart1
+
+	| elements odds |
+	
+	elements:= #(1 2 5 6 9).
+	
+	odds := OrderedCollection new.
+	elements do: [:each | each even ifTrue: [odds add:each]].
+	^odds! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 20:53:44' prior: 50466264!
+findOddsPart1
+
+	| elements odds |
+	
+	elements:= #(1 2 5 6 9).
+	
+	odds := OrderedCollection new.
+	elements do: [:each | each even ifTrue: [odds add:each]].
+	^odds! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 20:54:25' prior: 50466272!
+findOddsPart1
+
+	| elements odds |
+	
+	elements:= #(1 2 5 6 9).
+	
+	odds := OrderedCollection new.
+	elements do: [:each | each even ifTrue: [odds add:each]].
+	^odds! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 21:05:56'!
+findDoubles
+
+	| elements |
+	
+	elements:= #(1 2 5 6 9).
+	
+	^elements select: [:each | each odd]! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 21:12:25'!
+findDoubles1
+
+	| elements |
+	
+	elements:= #(1 2 5 6 9).
+	
+	^elements collect: [:each | each * 2]! !
+!XXX methodsFor: 'as yet unclassified' stamp: 'AS 4/7/2022 21:16:39'!
+findFirstEven
+
+	| elements |
+	
+	elements:= #(1 2 5 6 9).
+	
+	^elements detect: [:each | each even]! !
+
+----STARTUP---- (12 May 2022 20:21:11) as /home/clinux01/Cuis_University/linux64/CuisUniversity-5053.image!
+
+
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRoverTest category: 'MarsRover' stamp: 'AS 5/12/2022 20:23:32'!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRover category: 'MarsRover' stamp: 'AS 5/12/2022 20:42:09'!
+Object subclass: #MarsRover
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRoverTest methodsFor: 'no messages' stamp: 'AS 5/12/2022 20:41:58'!
+test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #South.
+	
+	self assert: ((marsRover process: '') isAt: 0@0 heading: #South)! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:42:30'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:42:30'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:42:45'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:42:45'!
+ERROR!
+!MarsRover class methodsFor: 'initialization' stamp: 'AS 5/12/2022 20:43:07'!
+at: aPoint heading: aSymbol 
+	self shouldBeImplemented.! !
+
+!classDefinition: 'MarsRover class' category: 'MarsRover' stamp: 'AS 5/12/2022 20:44:24'!
+MarsRover class
+	instanceVariableNames: 'position'!
+
+!classDefinition: 'MarsRover class' category: 'MarsRover' stamp: 'AS 5/12/2022 20:44:25'!
+MarsRover class
+	instanceVariableNames: 'position orientation'!
+!MarsRover class methodsFor: 'initialization' stamp: 'AS 5/12/2022 20:44:20' prior: 50466217!
+at: aPoint heading: aCardinalDirection
+	position := aPoint.
+	orientation := aCardinalDirection.! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:45:06'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:45:06'!
+ERROR!
+!MarsRover class methodsFor: 'instance creation' stamp: 'AS 5/12/2022 20:45:42'!
+process: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeProcess: aString ! !
+
+!methodRemoval: MarsRover class #process: stamp: 'AS 5/12/2022 20:45:56'!
+process: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeProcess: aString !
+
+MarsRover class!
+
+MarsRover class
+	instanceVariableNames: ''!
+
+!classDefinition: 'MarsRover class' category: 'MarsRover' stamp: 'AS 5/12/2022 20:46:28'!
+MarsRover class
+	instanceVariableNames: ''!
+
+Object subclass: #MarsRover
+	instanceVariableNames: 'position orientation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRover category: 'MarsRover' stamp: 'AS 5/12/2022 20:46:38'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position orientation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRover methodsFor: 'nil' stamp: 'AS 5/12/2022 20:48:03'!
+initializeMarsRoverAt: aPoint heading: aCardinalDirection
+	
+	position:= aPoint.
+	
+	orientation:= aCardinalDirection.
+	
+	^self new.! !
+!MarsRover class methodsFor: 'initialization' stamp: 'AS 5/12/2022 20:48:27' prior: 50466232!
+at: aPoint heading: aCardinalDirection
+	^self new initializeMarsRoverAt: aPoint heading: aCardinalDirection ! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AS 5/12/2022 20:48:34' prior: 50466278!
+initializeMarsRoverAt: aPoint heading: aCardinalDirection
+	
+	position:= aPoint.
+	
+	orientation:= aCardinalDirection.
+! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:49:11'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:49:11'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:49:31'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:49:31'!
+ERROR!
+!MarsRover methodsFor: 'messages' stamp: 'AS 5/12/2022 20:49:49'!
+process: aString 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'messages' stamp: 'AS 5/12/2022 20:49:57' prior: 50466315!
+process: aString ! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:50:06'!
+ERROR!
+!MarsRover methodsFor: 'position' stamp: 'AS 5/12/2022 20:50:38'!
+isAt: aPoint heading: aSymbol 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'position' stamp: 'AS 5/12/2022 20:50:51' prior: 50466327!
+isAt: aPoint heading: aSymbol 
+	^true.! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:50:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:51:26'!
+PASSED!
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 20:52:21'!
+test02RoverMovesOnePositionForward
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #South.
+	
+	self assert: ((marsRover process: 'f') isAt: 0@1 heading: #South)! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:52:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 20:52:25'!
+PASSED!
+!MarsRover methodsFor: 'position' stamp: 'AS 5/12/2022 20:53:32' prior: 50466332!
+isAt: aPoint heading: aCardinalDirection 
+	^((aPoint = position) and: [aCardinalDirection = orientation]).! !
+!MarsRover methodsFor: 'position' stamp: 'AS 5/12/2022 20:53:55' prior: 50466360!
+isAt: aPosition heading: aCardinalDirection 
+	^((aPosition = position) and: [aCardinalDirection = orientation]).! !
+!MarsRover methodsFor: 'initialization' stamp: 'AS 5/12/2022 20:54:07' prior: 50466293!
+initializeMarsRoverAt: aPosition heading: aCardinalDirection
+	
+	position:= aPosition.
+	
+	orientation:= aCardinalDirection.
+! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 20:54:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 20:54:18'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 20:54:18'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 20:54:46'!
+FAILURE!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:00:00' prior: 50466320!
+process: anInstruction
+
+	(anInstruction = 'f') ifTrue: [position x @ (position y - 1)].! !
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:00:07' prior: 50466344!
+test02RoverMovesOnePositionForward
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #South.
+	
+	self assert: ((marsRover process: 'f') isAt: 0@-1 heading: #South)! !
+!MarsRover methodsFor: 'position' stamp: 'AS 5/12/2022 21:00:17' prior: 50466366!
+isAt: aPosition heading: aCardinalDirection 
+
+	^((aPosition = position) and: [aCardinalDirection = orientation]).! !
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:00:35' prior: 50466394!
+process: anInstruction
+
+	(anInstruction = 'f') ifTrue: [position x @ (position y - 1)].! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:00:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:00:40'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:00:40'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:01:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:01:14'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:01:14'!
+FAILURE!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:02:01' prior: 50466416!
+process: anInstruction
+
+	(anInstruction = 'f') ifTrue: [position := position x @ (position y - 1)].! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:02:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:02:05'!
+PASSED!
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:02:48'!
+test02RoverMovesTwoPositionsForward
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #South.
+	
+	self assert: ((marsRover process: 'ff') isAt: 0@-2 heading: #South)! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:03:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:03:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:03:01'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:03:01'!
+FAILURE!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:05:50' prior: 50466443!
+process: anInstruction
+		
+	anInstruction do: [ :char | (char = $f) ifTrue: [position := position x @ (position y - 1)].].! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:05:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:05:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:05:55'!
+PASSED!
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:06:35'!
+test03RoverMovesTwoPositionsForward
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #South.
+	
+	self assert: ((marsRover process: 'ff') isAt: 0@-2 heading: #South)! !
+
+!methodRemoval: MarsRoverTest #test02RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:06:35'!
+test02RoverMovesTwoPositionsForward
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #South.
+	
+	self assert: ((marsRover process: 'ff') isAt: 0@-2 heading: #South)!
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:07:29'!
+test04RoverMovesTwoPositionsBackwards
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #South.
+	
+	self assert: ((marsRover process: 'bb') isAt: 0@2 heading: #South)! !
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:07:40' prior: 50466512!
+test04RoverMovesTwoPositionsBackwards
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #South.
+	
+	self assert: ((marsRover process: 'bb') isAt: 0@2 heading: #South)! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:07:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:07:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:07:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:07:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:07:43'!
+FAILURE!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:08:31' prior: 50466478!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		].! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:08:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:08:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:08:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:08:37'!
+PASSED!
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:11:39'!
+test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #South.
+	
+	self assert: ((marsRover process: 'r') isAt: 0@0 heading: #West)! !
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:12:43' prior: 50466547!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [orientation := #West].
+		].! !
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:12:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:12:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:12:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:12:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:12:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:12:51'!
+PASSED!
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:13:35'!
+test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #South.
+	
+	self assert: ((marsRover process: 'r') isAt: 0@0 heading: #West)! !
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:16:04' prior: 50466579!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			(orientation = #West) ifTrue: [orientation := #North].
+			(orientation = #South) ifTrue: [orientation := #West].
+			].
+		].! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:16:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:16:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:16:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:16:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:16:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:16:10'!
+PASSED!
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:17:05'!
+test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	self assert: ((marsRover process: 'rr') isAt: 0@0 heading: #South)! !
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:17:08'!
+FAILURE!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:18:02' prior: 50466621!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			(orientation = #West) ifTrue: [orientation := #North].
+			(orientation = #South) ifTrue: [orientation := #West].
+			(orientation = #North) ifTrue: [orientation := #East].
+			(orientation = #East) ifTrue: [orientation := #South].
+			].
+		].! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:18:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:18:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:18:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:18:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:18:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:18:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:18:05'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:18:05'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:18:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:18:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:18:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:18:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:18:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:18:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:18:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:18:26'!
+FAILURE!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:25:22' prior: 50466672!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			(orientation = #West) ifTrue: [^orientation := #North].
+			(orientation = #South) ifTrue: [^orientation := #West].
+			(orientation = #North) ifTrue: [^orientation := #East].
+			(orientation = #East) ifTrue: [^orientation := #South].
+			].
+		].! !
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:25:24'!
+ERROR!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:25:36' prior: 50466753!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			(orientation = #West) ifTrue: [orientation := #North].
+			(orientation = #South) ifTrue: [orientation := #West].
+			(orientation = #North) ifTrue: [orientation := #East].
+			(orientation = #East) ifTrue: [orientation := #South].
+			].
+		].! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:25:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:25:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:25:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:25:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:25:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:25:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:25:38'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:25:38'!
+FAILURE!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:26:09' prior: 50466775!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			(orientation = #West) ifTrue: [^orientation := #North].
+			(orientation = #South) ifTrue: [^orientation := #West].
+			(orientation = #North) ifTrue: [^orientation := #East].
+			(orientation = #East) ifTrue: [^orientation := #South].
+			].
+		].! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:26:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:26:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:26:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:26:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:26:13'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:26:13'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:26:13'!
+ERROR!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:26:53' prior: 50466824!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			(orientation = #West) ifTrue: [orientation := #North].
+			(orientation = #South) ifTrue: [orientation := #West].
+			(orientation = #North) ifTrue: [orientation := #East].
+			(orientation = #East) ifTrue: [orientation := #South].
+			].
+		].! !
+
+Object subclass: #CardinalPoints
+	instanceVariableNames: 'position orientation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #CardinalPoints category: 'MarsRover' stamp: 'AS 5/12/2022 21:29:12'!
+Object subclass: #CardinalPoints
+	instanceVariableNames: 'position orientation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+Object subclass: #CardinalPoints
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #CardinalPoints category: 'MarsRover' stamp: 'AS 5/12/2022 21:29:25'!
+Object subclass: #CardinalPoints
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!CardinalPoints methodsFor: 'no messages' stamp: 'AS 5/12/2022 21:29:56'!
+right
+
+ ^ self subclassResponsibility .! !
+!CardinalPoints methodsFor: 'as yet unclassified' stamp: 'AS 5/12/2022 21:30:05'!
+left
+
+ ^ self subclassResponsibility .! !
+
+!classRemoval: #CardinalPoints stamp: 'AS 5/12/2022 21:32:28'!
+Object subclass: #CardinalPoints
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:32:46' prior: 50466869!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			(orientation = #West) ifTrue: [orientation := #North. ^self].
+			(orientation = #South) ifTrue: [orientation := #West. ^self].
+			(orientation = #North) ifTrue: [orientation := #East. ^self].
+			(orientation = #East) ifTrue: [orientation := #South. ^self].
+			].
+		].! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:32:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:32:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:32:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:32:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:32:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:32:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:32:49'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:32:49'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:32:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:32:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:32:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:32:59'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:32:59'!
+FAILURE!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:33:54' prior: 50466924!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			(orientation = #West) ifTrue: [orientation := #North].
+			(orientation = #South) ifTrue: [orientation := #West].
+			(orientation = #North) ifTrue: [orientation := #East].
+			(orientation = #East) ifTrue: [orientation := #South].
+			].
+		].! !
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:36:02'!
+orientationAfterRotatingRigthWith: anOrientation
+
+	(anOrientation = #West) ifTrue: [^#North].
+	(anOrientation = #South) ifTrue: [^#West].
+	(anOrientation = #North) ifTrue: [^#East].
+	(anOrientation = #East) ifTrue: [^#South].
+! !
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:36:26' prior: 50467006!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			orientation := self orientationAfterRotatingRigthWith: orientation. 
+			].
+		].! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:36:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:36:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:36:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:36:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:36:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:36:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:36:28'!
+PASSED!
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:39:38'!
+test07RoverMovesOnePositionFowardAfterRotatingRightStartingNorth
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	self assert: ((marsRover process: 'rf') isAt: 0@1 heading: #South)! !
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:39:42' prior: 50467072!
+test07RoverMovesOnePositionFowardAfterRotatingRightStartingNorth
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	self assert: ((marsRover process: 'rf') isAt: 0@1 heading: #East)! !
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:39:48'!
+test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	self assert: ((marsRover process: 'rf') isAt: 0@1 heading: #East)! !
+
+!methodRemoval: MarsRoverTest #test07RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:39:48'!
+test07RoverMovesOnePositionFowardAfterRotatingRightStartingNorth
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	self assert: ((marsRover process: 'rf') isAt: 0@1 heading: #East)!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:39:50'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:39:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:39:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:40:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:40:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:40:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:40:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:40:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:40:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:40:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:40:23'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:40:23'!
+FAILURE!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:41:58' prior: 50467033!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			orientation := self orientationAfterRotatingRigthWith: orientation. 
+			].
+		].! !
+!MarsRover methodsFor: 'position' stamp: 'AS 5/12/2022 21:43:06'!
+orientationAfterRotatingRigthWith
+
+	(orientation = #West) ifTrue: [^#North].
+	(orientation = #South) ifTrue: [^#West].
+	(orientation = #North) ifTrue: [^#East].
+	(orientation = #East) ifTrue: [^#South].
+! !
+
+!methodRemoval: MarsRover #orientationAfterRotatingRigthWith: stamp: 'AS 5/12/2022 21:43:11'!
+orientationAfterRotatingRigthWith: anOrientation
+
+	(anOrientation = #West) ifTrue: [^#North].
+	(anOrientation = #South) ifTrue: [^#West].
+	(anOrientation = #North) ifTrue: [^#East].
+	(anOrientation = #East) ifTrue: [^#South].
+!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:43:17' prior: 50467180!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := position x @ (position y + 1)].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			orientation := self orientationAfterRotatingRigthWith.
+			].
+		].! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:43:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:43:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:43:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:43:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:43:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:43:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:43:20'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:43:20'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:43:20'!
+FAILURE!
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:43:28' prior: 50467090!
+test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth
+
+	"| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	self assert: ((marsRover process: 'rf') isAt: 0@1 heading: #East)"! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:43:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:43:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:43:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:43:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:43:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:43:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:43:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:43:30'!
+PASSED!
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:43:36' prior: 50467259!
+test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	self assert: ((marsRover process: 'rf') isAt: 0@1 heading: #East)! !
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:44:19' prior: 50467212!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := self positionAfterMovingBackwards].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			orientation := self orientationAfterRotatingRigthWith.
+			].
+		].! !
+!MarsRover methodsFor: 'position' stamp: 'AS 5/12/2022 21:45:49'!
+orientationAfterRotatingRigth
+
+	(orientation = #West) ifTrue: [^#North].
+	(orientation = #South) ifTrue: [^#West].
+	(orientation = #North) ifTrue: [^#East].
+	(orientation = #East) ifTrue: [^#South].
+! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AS 5/12/2022 21:45:49' prior: 50467310!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := self positionAfterMovingBackwards].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			orientation := self orientationAfterRotatingRigth.
+			].
+		].! !
+
+!methodRemoval: MarsRover #orientationAfterRotatingRigthWith stamp: 'AS 5/12/2022 21:45:49'!
+orientationAfterRotatingRigthWith
+
+	(orientation = #West) ifTrue: [^#North].
+	(orientation = #South) ifTrue: [^#West].
+	(orientation = #North) ifTrue: [^#East].
+	(orientation = #East) ifTrue: [^#South].
+!
+!MarsRover methodsFor: 'position' stamp: 'AS 5/12/2022 21:47:27'!
+orientationAfterRotatingRight
+
+	(orientation = #West) ifTrue: [^#North].
+	(orientation = #South) ifTrue: [^#West].
+	(orientation = #North) ifTrue: [^#East].
+	(orientation = #East) ifTrue: [^#South].
+! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AS 5/12/2022 21:47:27' prior: 50467332!
+process: anInstruction
+		
+	anInstruction do: [ :char |
+		(char = $b) ifTrue: [position := self positionAfterMovingBackwards].
+		(char = $f) ifTrue: [position := position x @ (position y - 1)].
+		(char = $r) ifTrue: [
+			orientation := self orientationAfterRotatingRight.
+			].
+		].! !
+
+!methodRemoval: MarsRover #orientationAfterRotatingRigth stamp: 'AS 5/12/2022 21:47:27'!
+orientationAfterRotatingRigth
+
+	(orientation = #West) ifTrue: [^#North].
+	(orientation = #South) ifTrue: [^#West].
+	(orientation = #North) ifTrue: [^#East].
+	(orientation = #East) ifTrue: [^#South].
+!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:47:50'!
+positionAfterMovingBackwards
+
+ ! !
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 21:49:47' prior: 50467384!
+positionAfterMovingBackwards
+
+
+	(orientation = #West) ifTrue: [^ (position x + 1 @ position y)].
+	(orientation = #South) ifTrue: [^(position x @ position y+1)].
+	(orientation = #North) ifTrue: [^(position x  @ position y-1)].
+	(orientation = #East) ifTrue: [^(position x-1  @ position y)].
+
+
+ ! !
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:49:59'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:49:59'!
+FAILURE!
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:50:21' prior: 50467300!
+test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	self assert: ((marsRover process: 'rb') isAt: 0@-1 heading: #East)! !
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:50:26'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:50:26'!
+FAILURE!
+!Behavior method!
+at: aPoint heading: aCardinalDirection
+	^ [
+	([
+	(self coverAll:
+		{42 to: 45}) new ] valueCoveringAll:
+		{47 to: 49})
+		initializeMarsRoverAt:
+			(aPoint
+				cover: (74 to: 79)
+				declaredAt: (5 to: 10))
+		heading:
+			(aCardinalDirection
+				cover: (90 to: 107)
+				declaredAt: (21 to: 38)) ] valueCoveringAll:
+		{51 to: 72. 81 to: 88}.! !
+!Behavior method!
+initializeMarsRoverAt: aPosition heading: aCardinalDirection
+	(position _ aPosition
+		cover: (76 to: 84)
+		declaredAt: (24 to: 32))
+		cover: (65 to: 72)
+		declaredAt: (65 to: 72).
+	(orientation _ aCardinalDirection
+		cover: (104 to: 121)
+		declaredAt: (43 to: 60))
+		cover: (90 to: 100)
+		declaredAt: (90 to: 100).! !
+!Behavior method!
+process: anInstruction
+	[
+	(anInstruction
+		cover: (28 to: 40)
+		declaredAt: (10 to: 22)) do: [ :char |
+		[
+		([
+		(char
+			cover: (59 to: 62)
+			declaredAt: (49 to: 52)) =
+			($b coverAll:
+				{66 to: 67}) ] valueCoveringAll:
+			{64 to: 64}) ifTrue: [
+			(position _ [
+			(self coverAll:
+				{91 to: 94}) positionAfterMovingBackwards ] valueCoveringAll:
+				{96 to: 123})
+				cover: (79 to: 86)
+				declaredAt: (79 to: 86) ]] valueCoveringAll:
+			{70 to: 76}.
+		[
+		([
+		(char
+			cover: (130 to: 133)
+			declaredAt: (49 to: 52)) =
+			($f coverAll:
+				{137 to: 138}) ] valueCoveringAll:
+			{135 to: 135}) ifTrue: [
+			(position _ [
+			([
+			(position
+				cover: (150 to: 157)
+				declaredAt: (79 to: 86)) x ] valueCoveringAll:
+				{171 to: 171}) @
+				([
+				([
+				(position
+					cover: (162 to: 169)
+					declaredAt: (79 to: 86)) y ] valueCoveringAll:
+					{185 to: 185}) -
+					(1 coverAll:
+						{189 to: 189}) ] valueCoveringAll:
+					{187 to: 187}) ] valueCoveringAll:
+				{173 to: 173})
+				cover: (176 to: 183)
+				declaredAt: (79 to: 86) ]] valueCoveringAll:
+			{141 to: 147}.
+		[
+		([
+		(char
+			cover: (197 to: 200)
+			declaredAt: (49 to: 52)) =
+			($r coverAll:
+				{204 to: 205}) ] valueCoveringAll:
+			{202 to: 202}) ifTrue: [
+			(orientation _ [
+			(self coverAll:
+				{236 to: 239}) orientationAfterRotatingRight ] valueCoveringAll:
+				{241 to: 269})
+				cover: (221 to: 231)
+				declaredAt: (221 to: 231) ]] valueCoveringAll:
+			{208 to: 214} ]] valueCoveringAll:
+		{42 to: 44}.! !
+!Behavior method!
+isAt: aPosition heading: aCardinalDirection
+	^ [
+	([
+	(aPosition
+		cover: (51 to: 59)
+		declaredAt: (7 to: 15)) =
+		(position
+			cover: (63 to: 70)
+			declaredAt: (63 to: 70)) ] valueCoveringAll:
+		{61 to: 61}) and: [
+		[
+		(aCardinalDirection
+			cover: (79 to: 96)
+			declaredAt: (26 to: 43)) =
+			(orientation
+				cover: (100 to: 110)
+				declaredAt: (100 to: 110)) ] valueCoveringAll:
+			{98 to: 98} ]] valueCoveringAll:
+		{73 to: 76}.! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:50:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:50:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:50:52'!
+PASSED!
+!Behavior method!
+positionAfterMovingBackwards
+	[
+	([
+	(orientation
+		cover: (34 to: 44)
+		declaredAt: (34 to: 44)) =
+		(#West coverAll:
+			{48 to: 52}) ] valueCoveringAll:
+		{46 to: 46}) ifTrue: [ ^ [
+		([
+		([
+		(position
+			cover: (67 to: 74)
+			declaredAt: (67 to: 74)) x ] valueCoveringAll:
+			{76 to: 76}) +
+			(1 coverAll:
+				{80 to: 80}) ] valueCoveringAll:
+			{78 to: 78}) @
+			([
+			(position
+				cover: (84 to: 91)
+				declaredAt: (67 to: 74)) y ] valueCoveringAll:
+				{93 to: 93}) ] valueCoveringAll:
+			{82 to: 82} ]] valueCoveringAll:
+		{55 to: 61}.
+	[
+	([
+	(orientation
+		cover: (100 to: 110)
+		declaredAt: (34 to: 44)) =
+		(#South coverAll:
+			{114 to: 119}) ] valueCoveringAll:
+		{112 to: 112}) ifTrue: [ ^ [
+		([
+		([
+		(position
+			cover: (133 to: 140)
+			declaredAt: (67 to: 74)) x ] valueCoveringAll:
+			{142 to: 142}) @
+			([
+			(position
+				cover: (146 to: 153)
+				declaredAt: (67 to: 74)) y ] valueCoveringAll:
+				{155 to: 155}) ] valueCoveringAll:
+			{144 to: 144}) +
+			(1 coverAll:
+				{157 to: 157}) ] valueCoveringAll:
+			{156 to: 156} ]] valueCoveringAll:
+		{122 to: 128}.
+	[
+	([
+	(orientation
+		cover: (164 to: 174)
+		declaredAt: (34 to: 44)) =
+		(#North coverAll:
+			{178 to: 183}) ] valueCoveringAll:
+		{176 to: 176}) ifTrue: [ ^ [
+		([
+		([
+		(position
+			cover: (197 to: 204)
+			declaredAt: (67 to: 74)) x ] valueCoveringAll:
+			{206 to: 206}) @
+			([
+			(position
+				cover: (211 to: 218)
+				declaredAt: (67 to: 74)) y ] valueCoveringAll:
+				{220 to: 220}) ] valueCoveringAll:
+			{209 to: 209}) -
+			(1 coverAll:
+				{222 to: 222}) ] valueCoveringAll:
+			{221 to: 221} ]] valueCoveringAll:
+		{186 to: 192}.
+	[
+	([
+	(orientation
+		cover: (229 to: 239)
+		declaredAt: (34 to: 44)) =
+		(#East coverAll:
+			{243 to: 247}) ] valueCoveringAll:
+		{241 to: 241}) ifTrue: [ ^ [
+		([
+		([
+		(position
+			cover: (261 to: 268)
+			declaredAt: (67 to: 74)) x ] valueCoveringAll:
+			{270 to: 270}) -
+			(1 coverAll:
+				{272 to: 272}) ] valueCoveringAll:
+			{271 to: 271}) @
+			([
+			(position
+				cover: (277 to: 284)
+				declaredAt: (67 to: 74)) y ] valueCoveringAll:
+				{286 to: 286}) ] valueCoveringAll:
+			{275 to: 275} ]] valueCoveringAll:
+		{250 to: 256}.! !
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:50:52'!
+FAILURE!
+!Behavior method!
+orientationAfterRotatingRight
+	[
+	([
+	(orientation
+		cover: (34 to: 44)
+		declaredAt: (34 to: 44)) =
+		(#West coverAll:
+			{48 to: 52}) ] valueCoveringAll:
+		{46 to: 46}) ifTrue: [ ^ #North coverAll:
+			{65 to: 70} ]] valueCoveringAll:
+		{55 to: 61}.
+	[
+	([
+	(orientation
+		cover: (76 to: 86)
+		declaredAt: (34 to: 44)) =
+		(#South coverAll:
+			{90 to: 95}) ] valueCoveringAll:
+		{88 to: 88}) ifTrue: [ ^ #West coverAll:
+			{108 to: 112} ]] valueCoveringAll:
+		{98 to: 104}.
+	[
+	([
+	(orientation
+		cover: (118 to: 128)
+		declaredAt: (34 to: 44)) =
+		(#North coverAll:
+			{132 to: 137}) ] valueCoveringAll:
+		{130 to: 130}) ifTrue: [ ^ #East coverAll:
+			{150 to: 154} ]] valueCoveringAll:
+		{140 to: 146}.
+	[
+	([
+	(orientation
+		cover: (160 to: 170)
+		declaredAt: (34 to: 44)) =
+		(#East coverAll:
+			{174 to: 178}) ] valueCoveringAll:
+		{172 to: 172}) ifTrue: [ ^ #South coverAll:
+			{191 to: 196} ]] valueCoveringAll:
+		{181 to: 187}.! !
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:50:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:50:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:50:52'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:50:52'!
+FAILURE!
+!MarsRoverTest methodsFor: 'test' stamp: 'AS 5/12/2022 21:52:57' prior: 50467409!
+test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 0@0 heading: #North.
+	
+	self assert: ((marsRover process: 'rb') isAt: -1@0 heading: #East)! !
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:53:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:53:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:53:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:53:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:53:03'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:53:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:53:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:53:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:53:03'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:53:03'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:53:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:53:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:53:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:53:13'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:53:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:53:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:53:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:53:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:53:13'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:53:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:53:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:53:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:53:39'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:53:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:53:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:53:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:53:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:53:39'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:55:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:55:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:55:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:55:39'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:55:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:55:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:55:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:55:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:55:39'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 21:57:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 21:57:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 21:57:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:57:28'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:57:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 21:57:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 21:57:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 21:57:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 21:57:28'!
+FAILURE!
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 22:02:46' prior: 50467388!
+positionAfterMovingBackwards
+
+
+	(orientation = #West) ifTrue: [^ (position x + 1 @ position y)].
+	(orientation = #South) ifTrue: [^(position x @ position y+1)].
+	(orientation = #North) ifTrue: [^(position x  @ (position y-1))].
+	(orientation = #East) ifTrue: [^(position x-1  @ position y)].
+
+
+ ! !
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 22:02:58' prior: 50467829!
+positionAfterMovingBackwards
+
+
+	(orientation = #West) ifTrue: [^ (position x + 1 @ position y)].
+	(orientation = #South) ifTrue: [^(position x @( position y+1))].
+	(orientation = #North) ifTrue: [^(position x  @ (position y-1))].
+	(orientation = #East) ifTrue: [^(position x-1  @ position y)].
+
+
+ ! !
+!MarsRover methodsFor: 'instructions' stamp: 'AS 5/12/2022 22:03:03' prior: 50467842!
+positionAfterMovingBackwards
+
+
+	(orientation = #West) ifTrue: [^ (position x + 1 @ position y)].
+	(orientation = #South) ifTrue: [^(position x @ (position y+1))].
+	(orientation = #North) ifTrue: [^(position x  @ (position y-1))].
+	(orientation = #East) ifTrue: [^(position x-1  @ position y)].
+
+
+ ! !
+
+!testRun: #MarsRoverTest #test01RoverStaysAtOriginWhenRecievesEmptyStringHeadingSouth stamp: 'AS 5/12/2022 22:03:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02RoverMovesOnePositionForward stamp: 'AS 5/12/2022 22:03:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03RoverMovesTwoPositionsForward stamp: 'AS 5/12/2022 22:03:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04RoverMovesTwoPositionsBackwards stamp: 'AS 5/12/2022 22:03:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05RoverIsHeadingWestAfterRotatingRightWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 22:03:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06RoverIsHeadingNorthAfterRotatingRightTwoTimesWhenHeadingSouthAtCreation stamp: 'AS 5/12/2022 22:03:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07RoverIsHeadingSouthAfterRotatingRightTwoTimesWhenHeadingNorthAtCreation stamp: 'AS 5/12/2022 22:03:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08RoverMovesOnePositionFowardAfterRotatingRightStartingNorth stamp: 'AS 5/12/2022 22:03:09'!
+PASSED!
