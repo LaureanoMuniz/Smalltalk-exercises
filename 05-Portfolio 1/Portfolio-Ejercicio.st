@@ -133,7 +133,7 @@ test10PortfolioWithOneAccountAndOnePortfolioTransactions
 	
 	self assert: portfolio transactions = (OrderedCollection with: deposit with: withdraw).! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'DW 5/19/2022 20:41:59'!
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 5/23/2022 00:22:21'!
 test11addAccountToPortfolio
 
 	| portfolio account |
@@ -143,7 +143,7 @@ test11addAccountToPortfolio
 	
 	portfolio add: account.
 	
-	self assert: portfolio includes: account.! !
+	self assert: (portfolio checkExistance: account).! !
 
 !PortfolioTest methodsFor: 'tests' stamp: 'DW 5/19/2022 20:44:30'!
 test12balanceAfterAddingAccountToPortfolio
@@ -158,7 +158,7 @@ test12balanceAfterAddingAccountToPortfolio
 	
 	self assert: portfolio balance = account balance.! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'LM 5/21/2022 14:34:23'!
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 5/23/2022 00:22:41'!
 test13addPortfolioToPortfolio
 
 	| portfolio1 portfolio2 |
@@ -168,7 +168,7 @@ test13addPortfolioToPortfolio
 	
 	portfolio1 add: portfolio2.
 	
-	self assert: portfolio1 includes: portfolio2.! !
+	self assert: (portfolio1 checkExistance: portfolio2).! !
 
 !PortfolioTest methodsFor: 'tests' stamp: 'DW 5/19/2022 20:46:26'!
 test14balanceAfterAddingPortfolioToPortfolio
@@ -238,6 +238,72 @@ test17cannotAddAPortfolioThatRepeatsAnAccountInRootPortfolio
 	portfolio := Portfolio with: (OrderedCollection with: account).
 	
 		[rootPortfolio add: portfolio. 
+		self fail.] 
+				on: Error do:[ :anError | self assert: anError messageText = Portfolio MessageCannotAddToPortfolio.].
+	
+	
+! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 5/22/2022 23:30:48'!
+test18cannotAddAPortfolioIfAlreadyExistsInRelatedPortfolio
+
+	| rootPortfolio portfolio childrenPortfolio |
+	
+	childrenPortfolio := Portfolio new.
+	portfolio := Portfolio new.
+	rootPortfolio := Portfolio with: (OrderedCollection with: childrenPortfolio with: portfolio).
+	
+		[portfolio add: childrenPortfolio. 
+		self fail.] 
+				on: Error do:[ :anError | self assert: anError messageText = Portfolio MessageCannotAddToPortfolio.].
+	
+	
+! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 5/22/2022 23:32:21'!
+test19cannotAddAnAccountIfAlreadyExistsInRelatedPortfolio
+
+	| rootPortfolio portfolio account |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	rootPortfolio := Portfolio with: (OrderedCollection with: account with: portfolio).
+	
+		[portfolio add: account. 
+		self fail.] 
+				on: Error do:[ :anError | self assert: anError messageText = Portfolio MessageCannotAddToPortfolio.].
+	
+	
+! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 5/22/2022 23:47:04'!
+test20cannotAddAnAccountIfAlreadyExistsInAnyRelatedPortfolio
+
+	| rootPortfolio1 rootPortfolio2 portfolio account |
+	
+	account := ReceptiveAccount new.
+	portfolio := Portfolio new.
+	rootPortfolio1 := Portfolio with: (OrderedCollection with: account with: portfolio).
+	rootPortfolio2  := Portfolio with: (OrderedCollection with: portfolio).
+	
+		[portfolio add: account. 
+		self fail.] 
+				on: Error do:[ :anError | self assert: anError messageText = Portfolio MessageCannotAddToPortfolio.].
+	
+	
+! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 5/23/2022 00:08:53'!
+test21cannotCreateCyclingPortfolios
+
+	| portfolio1 portfolio2 portfolio3 portfolio4 |
+	
+	portfolio4 := Portfolio new.
+	portfolio3 := Portfolio with: (OrderedCollection with: portfolio4).
+	portfolio2 := Portfolio with: (	OrderedCollection  with: portfolio3).
+	portfolio1 := Portfolio with: (OrderedCollection with: portfolio2).
+	
+		[portfolio4 add: portfolio1. 
 		self fail.] 
 				on: Error do:[ :anError | self assert: anError messageText = Portfolio MessageCannotAddToPortfolio.].
 	
@@ -322,7 +388,7 @@ test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
 	self deny: (account hasRegistered:withdraw).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:14:01'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 5/23/2022 00:19:22'!
 test07AccountKnowsItsTransactions 
 
 	| account1 deposit1 |
@@ -332,7 +398,7 @@ test07AccountKnowsItsTransactions
 	deposit1 := Deposit register: 50 on: account1.
 		
 	self assert: 1 equals: account1 transactions size.
-	self assert: (account1 transactions includes: deposit1).
+	self assert: (account1 transactions checkExistance: deposit1).
 ! !
 
 
@@ -353,59 +419,99 @@ hasRegistered: aTransaction
 
 	^ self subclassResponsibility.! !
 
+!Account methodsFor: 'as yet unclassified' stamp: 'LM 5/22/2022 21:42:19'!
+transactions
+
+	^ self subclassResponsibility.! !
+
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
 Account subclass: #Portfolio
-	instanceVariableNames: 'elements'
+	instanceVariableNames: 'accounts parentPortfolios'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'balance' stamp: 'DW 5/16/2022 21:40:13'!
+!Portfolio methodsFor: 'balance' stamp: 'LM 5/23/2022 00:10:53'!
 balance
 
-	^elements sum: [ :anElement | anElement balance ] ifEmpty: [ 0 ].! !
+	^accounts sum: [ :anAccount | anAccount balance ] ifEmpty: [ 0 ].! !
 
-!Portfolio methodsFor: 'balance' stamp: 'LM 5/21/2022 13:21:13'!
+!Portfolio methodsFor: 'balance' stamp: 'LM 5/23/2022 00:19:22'!
+canAddReceptiveAccount: aReceptiveAccount
+
+
+	(self parents isEmpty) ifTrue: [^ (self checkExistance: aReceptiveAccount) not].
+	
+	^ self parents allSatisfy: [ :aParentPorfolio | aParentPorfolio canAddReceptiveAccount: aReceptiveAccount].
+! !
+
+!Portfolio methodsFor: 'balance' stamp: 'LM 5/23/2022 00:11:18'!
 hasRegistered: aTransaction
 
-	^ elements anySatisfy: [:anElement | anElement hasRegistered: aTransaction].! !
+	^ accounts anySatisfy: [:anAccount | anAccount hasRegistered: aTransaction].! !
 
-!Portfolio methodsFor: 'balance' stamp: 'DW 5/16/2022 21:39:53'!
+!Portfolio methodsFor: 'balance' stamp: 'LM 5/22/2022 23:11:41'!
 initialize
 
-	elements := OrderedCollection new.! !
+	accounts := OrderedCollection new.
+	parentPortfolios  := OrderedCollection new.! !
 
-!Portfolio methodsFor: 'balance' stamp: 'DW 5/16/2022 21:13:47'!
-initializeWith: aCollectionOfPortfolioElements
+!Portfolio methodsFor: 'balance' stamp: 'LM 5/23/2022 00:11:35'!
+initializeWith: aCollectionOfAccounts
 
-	elements:= aCollectionOfPortfolioElements.! !
+	accounts := aCollectionOfAccounts.
+	accounts do: [ :anAccount | anAccount addParentPortfolio: self].
+! !
 
-!Portfolio methodsFor: 'balance' stamp: 'DW 5/16/2022 21:47:14'!
+!Portfolio methodsFor: 'balance' stamp: 'LM 5/23/2022 00:11:53'!
 transactions
 
 	| transactions |
 	
 	transactions := OrderedCollection new.
 	
-	elements do:[ :anElement | anElement transactions do: [ :aTransaction | transactions addLast: aTransaction ] ].
+	accounts do:[ :anAccount | anAccount transactions do: [ :aTransaction | transactions addLast: aTransaction ] ].
 	
 	^transactions.! !
 
 
-!Portfolio methodsFor: 'assertion' stamp: 'DW 5/19/2022 20:39:08'!
-includes: anElement
+!Portfolio methodsFor: 'assertion' stamp: 'LM 5/23/2022 00:21:46'!
+checkExistance: anAccountToCheck
 
-	^elements includes: anElement.! !
-
-
-!Portfolio methodsFor: 'modification' stamp: 'LM 5/21/2022 15:03:36'!
-add: anAccount
-
-	(elements includes: anAccount ) ifTrue: [^self error: Portfolio MessageCannotAddToPortfolio.].
-	(elements anySatisfy: [: aSubAccount | aSubAccount includes: anAccount ]) ifTrue: [^self error: Portfolio MessageCannotAddToPortfolio.].
+	^ (accounts includes: anAccountToCheck ) or: [ accounts anySatisfy: [ :anAccount | anAccount checkExistance: anAccountToCheck].].
 	
-	elements addLast: anAccount.! !
+	
+	! !
+
+
+!Portfolio methodsFor: 'modification' stamp: 'LM 5/22/2022 23:03:51'!
+add: anAccount
+	
+	(anAccount canAddTo: self) ifFalse: [^self error: Portfolio MessageCannotAddToPortfolio].
+	
+	anAccount addParentPortfolio: self.
+	accounts addLast: anAccount.! !
+
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LM 5/22/2022 23:23:18'!
+addParentPortfolio: aPortfolio
+
+ parentPortfolios addLast: aPortfolio.! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LM 5/23/2022 00:19:22'!
+canAddTo: aPortfolio
+
+
+	
+	(aPortfolio parents isEmpty) ifTrue: [^ (aPortfolio checkExistance: self) not and: [accounts allSatisfy: [:subaccount | subaccount canAddTo: aPortfolio]]].
+	
+	^ aPortfolio parents allSatisfy: [ :aParentPorfolio | self canAddTo: aParentPorfolio ].! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LM 5/22/2022 23:27:19'!
+parents
+
+	^ parentPortfolios ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -426,15 +532,21 @@ with: anArrayOfPortfolioElements
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
 Account subclass: #ReceptiveAccount
-	instanceVariableNames: 'transactions'
+	instanceVariableNames: 'transactions parentPortfolios'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!ReceptiveAccount methodsFor: 'initialization' stamp: 'NR 10/17/2019 15:06:56'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'LM 5/22/2022 23:01:23'!
+addParentPortfolio: aPortfolio
+
+ ^ parentPortfolios addLast: aPortfolio.! !
+
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'LM 5/22/2022 23:12:03'!
 initialize
 
-	transactions := OrderedCollection new.! !
+	transactions := OrderedCollection new.
+	parentPortfolios  := 	OrderedCollection new.! !
 
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
@@ -458,12 +570,22 @@ balance
 	
 	^balance .! !
 
+!ReceptiveAccount methodsFor: 'balance' stamp: 'LM 5/23/2022 00:19:22'!
+checkExistance: anAccount
+	^ self = anAccount.! !
 
-!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
+
+!ReceptiveAccount methodsFor: 'testing' stamp: 'LM 5/23/2022 00:21:30'!
 hasRegistered: aTransaction
 
 	^ transactions includes: aTransaction 
 ! !
+
+
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'LM 5/22/2022 22:14:55'!
+canAddTo: aPortfolio
+
+	^ aPortfolio canAddReceptiveAccount: self.! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Ejercicio'!
