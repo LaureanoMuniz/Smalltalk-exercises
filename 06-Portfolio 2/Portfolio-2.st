@@ -369,6 +369,65 @@ test12AccountSummaryTwoDepositOneWithdrawOneTransferenceSendingAndATransferenceR
 	 
 	self assert: account accountSummary = 'Depósito por 100. Depósito por 1500. Extracción por 100. Salida por transferencia de 100. Entrada por transferencia de 100. Balance = 1500.'.! !
 
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'BB 5/29/2022 15:34:49'!
+test13transferNetZero
+
+	| account |
+	
+	account := ReceptiveAccount new.
+	
+	self assert: account transferNet = 0.! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'BB 5/29/2022 15:49:37'!
+test14transferNetOneTransferSending
+
+	| account  accountReceptor |
+	
+	account := ReceptiveAccount new.
+	accountReceptor := ReceptiveAccount new.
+	Transference from: account to: accountReceptor  amount: 100.
+	 
+	self assert: account transferNet =-100.! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'BB 5/29/2022 15:55:28'!
+test15transferNetOneSendingAndOneRecepting
+
+	| account accountSender accountReceptor |
+	
+	account := ReceptiveAccount new.
+	accountReceptor := ReceptiveAccount new.
+	accountSender := ReceptiveAccount new.
+	Transference from: account to: accountReceptor  amount: 100.
+	Transference from: accountSender to: account  amount: 50.
+	self assert: account transferNet =-50.! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'BB 5/29/2022 15:55:03'!
+test16transferNetOneSendingOneReceptingAndADeposit
+
+	| account accountSender accountReceptor |
+	
+	account := ReceptiveAccount new.
+	accountReceptor := ReceptiveAccount new.
+	accountSender := ReceptiveAccount new.
+	Transference from: account to: accountReceptor  amount: 100.
+	Transference from: accountSender to: account  amount: 50.
+	Deposit register: 100 on: account.
+	self assert: account transferNet =-50.! !
+
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'BB 5/29/2022 15:55:41'!
+test17transferNetOneSendingOneReceptingOneDepositAndAWithdraw
+
+	| account accountSender accountReceptor |
+	
+	account := ReceptiveAccount new.
+	accountReceptor := ReceptiveAccount new.
+	accountSender := ReceptiveAccount new.
+	Transference from: account to: accountReceptor  amount: 100.
+	Transference from: accountSender to: account  amount: 50.
+	Deposit register: 100 on: account.
+	Withdraw register: 100 on: account.
+	self assert: account transferNet =-50.! !
+
 
 !classDefinition: #TransferenceTest category: 'Portfolio-Solucion'!
 TestCase subclass: #TransferenceTest
@@ -674,20 +733,24 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'information' stamp: 'lm 5/27/2022 20:53:17'!
+!ReceptiveAccount methodsFor: 'information' stamp: 'BB 5/29/2022 22:38:00'!
 accountSummary
 	
 	| summary|
 	
 	summary  := ''.
 	transactions do: [ :aTransaction | 
-		(aTransaction isKindOf: Deposit) ifTrue: [summary := summary , 'Depósito por ', aTransaction value asString, '. '].
-		(aTransaction isKindOf: Withdraw) ifTrue: [summary := summary , 'Extracción por ', aTransaction value asString, '. '].
-		(aTransaction isKindOf: TransferenceSending ) ifTrue: [summary := summary , 'Salida por transferencia de ', aTransaction value asString, '. '].
-		(aTransaction isKindOf: TransferenceReception ) ifTrue: [summary := summary , 'Entrada por transferencia de ', aTransaction value asString, '. '].
+		summary:= summary , (aTransaction calculateTransactionInformationForAccount: AccountSummaryCalculator new).
 	].
 	
 	^ summary , 'Balance = ' , self balance asString , '.'.! !
+
+!ReceptiveAccount methodsFor: 'information' stamp: 'BB 5/29/2022 22:38:31'!
+transferNet
+
+	^transactions 
+		inject: 0
+		into: [ :currentTransferNet :transaction | currentTransferNet + (transaction calculateTransactionInformationForAccount: TransferNetCalculator new)].! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -707,6 +770,14 @@ value
 affectBalance: aBalance
 
 	self subclassResponsibility ! !
+
+
+
+
+!AccountTransaction methodsFor: 'information' stamp: 'BB 5/29/2022 22:30:22'!
+calculateTransactionInformationForAccount: anInformationCalculatorForAccount
+
+	^self subclassResponsibility.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -749,6 +820,12 @@ affectBalance: aBalance
 
 	^aBalance + value ! !
 
+
+!Deposit methodsFor: 'information' stamp: 'BB 5/29/2022 22:29:59'!
+calculateTransactionInformationForAccount: anInformationCalculatorForAccount
+
+	^anInformationCalculatorForAccount calculateInformationForDeposit: self.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Deposit class' category: 'Portfolio-Solucion'!
@@ -768,20 +845,28 @@ AccountTransaction subclass: #TransferenceReception
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferenceReception methodsFor: 'as yet unclassified' stamp: 'lm 5/27/2022 19:42:05'!
-affectBalance: aBalance
-
-	^aBalance + self value. ! !
-
-!TransferenceReception methodsFor: 'as yet unclassified' stamp: 'lm 5/27/2022 19:39:46'!
+!TransferenceReception methodsFor: 'initialization' stamp: 'lm 5/27/2022 19:39:46'!
 initializeWith: aTransference
 
 	transference  := aTransference.! !
 
-!TransferenceReception methodsFor: 'as yet unclassified' stamp: 'lm 5/27/2022 19:41:05'!
+
+!TransferenceReception methodsFor: 'value' stamp: 'lm 5/27/2022 19:41:05'!
 value
 	
 	^ transference value.! !
+
+
+!TransferenceReception methodsFor: 'balance' stamp: 'lm 5/27/2022 19:42:05'!
+affectBalance: aBalance
+
+	^aBalance + self value. ! !
+
+
+!TransferenceReception methodsFor: 'information' stamp: 'BB 5/29/2022 22:30:22'!
+calculateTransactionInformationForAccount: anInformationCalculatorForAccount
+
+	^anInformationCalculatorForAccount calculateInformationForTransferenceReception: self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -802,20 +887,28 @@ AccountTransaction subclass: #TransferenceSending
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferenceSending methodsFor: 'as yet unclassified' stamp: 'lm 5/27/2022 19:42:19'!
-affectBalance: aBalance
-
-	^aBalance - self value.! !
-
-!TransferenceSending methodsFor: 'as yet unclassified' stamp: 'lm 5/27/2022 19:39:38'!
+!TransferenceSending methodsFor: 'initialization' stamp: 'lm 5/27/2022 19:39:38'!
 initializeWith: aTransference
 
 	transference  := aTransference.! !
 
-!TransferenceSending methodsFor: 'as yet unclassified' stamp: 'lm 5/27/2022 19:41:19'!
+
+!TransferenceSending methodsFor: 'value' stamp: 'lm 5/27/2022 19:41:19'!
 value
 
 	^ transference value.! !
+
+
+!TransferenceSending methodsFor: 'balance' stamp: 'lm 5/27/2022 19:42:19'!
+affectBalance: aBalance
+
+	^aBalance - self value.! !
+
+
+!TransferenceSending methodsFor: 'information' stamp: 'BB 5/29/2022 22:30:22'!
+calculateTransactionInformationForAccount: anInformationCalculatorForAccount
+
+	^anInformationCalculatorForAccount calculateInformationForTransferenceSending: self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -853,6 +946,12 @@ affectBalance: aBalance
 
 	^aBalance - value! !
 
+
+!Withdraw methodsFor: 'information' stamp: 'BB 5/29/2022 22:30:22'!
+calculateTransactionInformationForAccount: anInformationCalculatorForAccount
+
+	^anInformationCalculatorForAccount calculateInformationForWithdraw: self.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Withdraw class' category: 'Portfolio-Solucion'!
@@ -863,6 +962,90 @@ Withdraw class
 for: aValue
 
 	^ self new initializeFor: aValue ! !
+
+
+!classDefinition: #InformationCalculatorForAccount category: 'Portfolio-Solucion'!
+Object subclass: #InformationCalculatorForAccount
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!InformationCalculatorForAccount methodsFor: 'as yet unclassified' stamp: 'BB 5/29/2022 22:32:56'!
+calculateInformationForDeposit: aDeposit
+
+	^self subclassResponsibility.! !
+
+!InformationCalculatorForAccount methodsFor: 'as yet unclassified' stamp: 'BB 5/29/2022 22:33:11'!
+calculateInformationForTransferenceReception: aTransferenceReception
+
+	^self subclassResponsibility.! !
+
+!InformationCalculatorForAccount methodsFor: 'as yet unclassified' stamp: 'BB 5/29/2022 22:33:27'!
+calculateInformationForTransferenceSending: aTransferenceSending
+
+	^self subclassResponsibility.! !
+
+!InformationCalculatorForAccount methodsFor: 'as yet unclassified' stamp: 'BB 5/29/2022 22:33:45'!
+calculateInformationForWithdraw: aWithdraw
+
+	^self subclassResponsibility.! !
+
+
+!classDefinition: #AccountSummaryCalculator category: 'Portfolio-Solucion'!
+InformationCalculatorForAccount subclass: #AccountSummaryCalculator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountSummaryCalculator methodsFor: 'as yet unclassified' stamp: 'BB 5/29/2022 22:31:56'!
+calculateInformationForDeposit: aDeposit
+
+	^'Depósito por ', aDeposit value asString, '. '! !
+
+!AccountSummaryCalculator methodsFor: 'as yet unclassified' stamp: 'BB 5/29/2022 22:31:59'!
+calculateInformationForTransferenceReception: aTransferenceReception
+
+	^'Entrada por transferencia de ', aTransferenceReception value asString, '. '! !
+
+!AccountSummaryCalculator methodsFor: 'as yet unclassified' stamp: 'BB 5/29/2022 22:32:03'!
+calculateInformationForTransferenceSending: aTransferenceSending 
+	
+	^'Salida por transferencia de ', aTransferenceSending value asString, '. '! !
+
+!AccountSummaryCalculator methodsFor: 'as yet unclassified' stamp: 'BB 5/29/2022 22:32:07'!
+calculateInformationForWithdraw: aWithdraw
+
+	^'Extracción por ', aWithdraw value asString, '. '! !
+
+
+!classDefinition: #TransferNetCalculator category: 'Portfolio-Solucion'!
+InformationCalculatorForAccount subclass: #TransferNetCalculator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferNetCalculator methodsFor: 'as yet unclassified' stamp: 'BB 5/29/2022 22:32:22'!
+calculateInformationForDeposit: aDeposit
+
+	^0.! !
+
+!TransferNetCalculator methodsFor: 'as yet unclassified' stamp: 'BB 5/29/2022 22:32:25'!
+calculateInformationForTransferenceReception: aTransferenceReception
+
+	^aTransferenceReception value.! !
+
+!TransferNetCalculator methodsFor: 'as yet unclassified' stamp: 'BB 5/29/2022 22:32:29'!
+calculateInformationForTransferenceSending: aTransferenceSending
+
+	^aTransferenceSending value * -1.! !
+
+!TransferNetCalculator methodsFor: 'as yet unclassified' stamp: 'BB 5/29/2022 22:32:33'!
+calculateInformationForWithdraw: aWithdraw
+
+	^0.! !
 
 
 !classDefinition: #Transference category: 'Portfolio-Solucion'!
