@@ -213,6 +213,38 @@ test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd
 			self assert: Portfolio canNotAddAccountErrorMessage equals: anError messageText.
 			self assert: portfolioToModify accountsIsEmpty ]! !
 
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:49:29'!
+test16NewPortfolioAccountSummary
+
+	| portfolio |
+	
+	
+	portfolio := Portfolio new.
+	
+	self assert: (AccountSummaryCalculator new reportAnAccount: portfolio) = 'Balance = 0.'.! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:55:02'!
+test17PortfolioWithEmptyAccountSummary
+
+	| portfolio account |
+	
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	self assert: (AccountSummaryCalculator new reportAnAccount: portfolio) = 'Balance = 0.'.! !
+
+!PortfolioTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:54:44'!
+test18PortfolioWithOneAccountSummary
+
+	| portfolio account |
+	
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	Deposit register: 100 on:  account .
+	 
+	self assert: ((AccountSummaryCalculator new reportAnAccount: portfolio) = 'Depósito por 100. Balance = 100.').! !
+
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Solucion'!
 TestCase subclass: #ReceptiveAccountTest
@@ -304,16 +336,16 @@ test07AccountKnowsItsTransactions
 	self assert: (account1 transactions includes: deposit1).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'lm 5/27/2022 20:42:43'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:35:27'!
 test08EmptyAccountSummary
 
 	| account |
 	
 	account := ReceptiveAccount new.
 	
-	self assert: account accountSummary = 'Balance = 0.'.! !
+	self assert: (AccountSummaryCalculator new reportAnAccount: account) = 'Balance = 0.'.! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'lm 5/27/2022 20:41:39'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:26:57'!
 test09AccountSummaryOneDeposit
 
 	| account |
@@ -322,9 +354,9 @@ test09AccountSummaryOneDeposit
 	Deposit register: 100 on: account.
 	
 	 
-	self assert: account accountSummary = 'Depósito por 100. Balance = 100.'.! !
+	self assert: ((AccountSummaryCalculator new reportAnAccount: account) = 'Depósito por 100. Balance = 100.').! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'lm 5/27/2022 20:46:51'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:28:42'!
 test10AccountSummaryTwoDepositOneWithdraw
 
 	| account |
@@ -335,9 +367,9 @@ test10AccountSummaryTwoDepositOneWithdraw
 	Withdraw register: 100 on: account.
 	
 	 
-	self assert: account accountSummary = 'Depósito por 100. Depósito por 1500. Extracción por 100. Balance = 1500.'.! !
+	self assert: (AccountSummaryCalculator new reportAnAccount: account)  = 'Depósito por 100. Depósito por 1500. Extracción por 100. Balance = 1500.'.! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'lm 5/27/2022 20:49:29'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:28:56'!
 test11AccountSummaryTwoDepositOneWithdrawAndATransferenceSending
 
 	| account accountReceptor |
@@ -350,9 +382,9 @@ test11AccountSummaryTwoDepositOneWithdrawAndATransferenceSending
 	Transference from: account to: accountReceptor  amount: 100.
 	
 	 
-	self assert: account accountSummary = 'Depósito por 100. Depósito por 1500. Extracción por 100. Salida por transferencia de 100. Balance = 1400.'.! !
+	self assert: (AccountSummaryCalculator new reportAnAccount: account) =  'Depósito por 100. Depósito por 1500. Extracción por 100. Salida por transferencia de 100. Balance = 1400.'.! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'lm 5/27/2022 20:52:50'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:29:12'!
 test12AccountSummaryTwoDepositOneWithdrawOneTransferenceSendingAndATransferenceReception
 
 	| account accountReceptor accountSender |
@@ -367,18 +399,18 @@ test12AccountSummaryTwoDepositOneWithdrawOneTransferenceSendingAndATransferenceR
 	Transference from: accountSender to: account  amount: 100.
 	
 	 
-	self assert: account accountSummary = 'Depósito por 100. Depósito por 1500. Extracción por 100. Salida por transferencia de 100. Entrada por transferencia de 100. Balance = 1500.'.! !
+	self assert: (AccountSummaryCalculator new reportAnAccount: account) = 'Depósito por 100. Depósito por 1500. Extracción por 100. Salida por transferencia de 100. Entrada por transferencia de 100. Balance = 1500.'.! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'BB 5/29/2022 15:34:49'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:36:11'!
 test13transferNetZero
 
 	| account |
 	
 	account := ReceptiveAccount new.
 	
-	self assert: account transferNet = 0.! !
+	self assert: (TransferNetCalculator new reportAnAccount: account) = 0.! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'BB 5/29/2022 15:49:37'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:36:22'!
 test14transferNetOneTransferSending
 
 	| account  accountReceptor |
@@ -387,9 +419,9 @@ test14transferNetOneTransferSending
 	accountReceptor := ReceptiveAccount new.
 	Transference from: account to: accountReceptor  amount: 100.
 	 
-	self assert: account transferNet =-100.! !
+	self assert: (TransferNetCalculator new reportAnAccount: account) =-100.! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'BB 5/29/2022 15:55:28'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:36:32'!
 test15transferNetOneSendingAndOneRecepting
 
 	| account accountSender accountReceptor |
@@ -399,9 +431,9 @@ test15transferNetOneSendingAndOneRecepting
 	accountSender := ReceptiveAccount new.
 	Transference from: account to: accountReceptor  amount: 100.
 	Transference from: accountSender to: account  amount: 50.
-	self assert: account transferNet =-50.! !
+	self assert: (TransferNetCalculator new reportAnAccount: account) =-50.! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'BB 5/29/2022 15:55:03'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:36:40'!
 test16transferNetOneSendingOneReceptingAndADeposit
 
 	| account accountSender accountReceptor |
@@ -412,9 +444,9 @@ test16transferNetOneSendingOneReceptingAndADeposit
 	Transference from: account to: accountReceptor  amount: 100.
 	Transference from: accountSender to: account  amount: 50.
 	Deposit register: 100 on: account.
-	self assert: account transferNet =-50.! !
+	self assert: (TransferNetCalculator new reportAnAccount: account) =-50.! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'BB 5/29/2022 15:55:41'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'LM 5/30/2022 16:36:46'!
 test17transferNetOneSendingOneReceptingOneDepositAndAWithdraw
 
 	| account accountSender accountReceptor |
@@ -426,7 +458,7 @@ test17transferNetOneSendingOneReceptingOneDepositAndAWithdraw
 	Transference from: accountSender to: account  amount: 50.
 	Deposit register: 100 on: account.
 	Withdraw register: 100 on: account.
-	self assert: account transferNet =-50.! !
+	self assert: (TransferNetCalculator new reportAnAccount: account) =-50.! !
 
 
 !classDefinition: #TransferenceTest category: 'Portfolio-Solucion'!
@@ -649,6 +681,13 @@ signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
 
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'LM 5/30/2022 16:15:33'!
+childrenDoOperation: aOperation
+
+
+	^ aOperation reportAccounts: accounts .! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
@@ -733,24 +772,11 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'information' stamp: 'BB 5/29/2022 22:38:00'!
-accountSummary
-	
-	| summary|
-	
-	summary  := ''.
-	transactions do: [ :aTransaction | 
-		summary:= summary , (aTransaction calculateTransactionInformationForAccount: AccountSummaryCalculator new).
-	].
-	
-	^ summary , 'Balance = ' , self balance asString , '.'.! !
+!ReceptiveAccount methodsFor: 'information' stamp: 'LM 5/30/2022 16:14:54'!
+childrenDoOperation: aOperation
 
-!ReceptiveAccount methodsFor: 'information' stamp: 'BB 5/29/2022 22:38:31'!
-transferNet
 
-	^transactions 
-		inject: 0
-		into: [ :currentTransferNet :transaction | currentTransferNet + (transaction calculateTransactionInformationForAccount: TransferNetCalculator new)].! !
+	^ aOperation reportTransactions: transactions.! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -770,8 +796,6 @@ value
 affectBalance: aBalance
 
 	self subclassResponsibility ! !
-
-
 
 
 !AccountTransaction methodsFor: 'information' stamp: 'BB 5/29/2022 22:30:22'!
@@ -1019,6 +1043,37 @@ calculateInformationForWithdraw: aWithdraw
 
 	^'Extracción por ', aWithdraw value asString, '. '! !
 
+!AccountSummaryCalculator methodsFor: 'as yet unclassified' stamp: 'LM 5/30/2022 16:52:22'!
+reportAccounts: aListOfAccounts
+
+	 |individualSummarys|
+	individualSummarys  := ''.
+	aListOfAccounts do: [ :anAccount | individualSummarys  := individualSummarys , anAccount childrenDoOperation: self].
+	
+	^ individualSummarys.
+	! !
+
+!AccountSummaryCalculator methodsFor: 'as yet unclassified' stamp: 'LM 5/30/2022 16:34:49'!
+reportAnAccount: anAccount
+
+	|individualReports|	
+	
+	individualReports := anAccount childrenDoOperation: self.
+	
+	^ individualReports  , 'Balance = ' , anAccount  balance asString , '.'.! !
+
+!AccountSummaryCalculator methodsFor: 'as yet unclassified' stamp: 'LM 5/30/2022 16:45:10'!
+reportTransactions: aListOfTransactions
+
+	| summary|
+	
+	summary  := ''.
+	aListOfTransactions do: [ :aTransaction | 
+		summary:= summary , (aTransaction calculateTransactionInformationForAccount: self).
+	].
+
+	^ summary.! !
+
 
 !classDefinition: #TransferNetCalculator category: 'Portfolio-Solucion'!
 InformationCalculatorForAccount subclass: #TransferNetCalculator
@@ -1046,6 +1101,19 @@ calculateInformationForTransferenceSending: aTransferenceSending
 calculateInformationForWithdraw: aWithdraw
 
 	^0.! !
+
+!TransferNetCalculator methodsFor: 'as yet unclassified' stamp: 'LM 5/30/2022 16:31:16'!
+reportAnAccount: anAccount
+
+	^ anAccount childrenDoOperation: self.! !
+
+!TransferNetCalculator methodsFor: 'as yet unclassified' stamp: 'LM 5/30/2022 16:30:41'!
+reportTransactions: aListOfTransactions
+
+
+
+	^ aListOfTransactions inject: 0
+		into: [ :currentTransferNet :transaction | currentTransferNet + (transaction calculateTransactionInformationForAccount: self)].! !
 
 
 !classDefinition: #Transference category: 'Portfolio-Solucion'!
