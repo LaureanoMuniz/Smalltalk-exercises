@@ -172,6 +172,26 @@ test11
 	self assert: logStream atEnd.
 ! !
 
+!MarsRoverLoggerTest methodsFor: 'as yet unclassified' stamp: 'BB 6/2/2022 00:22:43'!
+test12
+
+	| marsRover logger otherLogger logStream otherLogStream |
+	
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	logger := MarsRoverLogger followHeadingChangesOn: marsRover.
+	otherLogger := MarsRoverLogger followHeadingChangesOn: marsRover.
+	
+	marsRover process: 'lf'.
+	
+	logStream := logger readStream.
+	self assert: 'West' equals: logStream nextLine.
+	self assert: logStream atEnd.
+
+	otherLogStream := otherLogger readStream.
+	self assert: 'West' equals: otherLogStream nextLine.
+	self assert: otherLogStream atEnd.
+! !
+
 
 !classDefinition: #MarsRoverTest category: 'MarsRover-WithHeading'!
 TestCase subclass: #MarsRoverTest
@@ -580,7 +600,7 @@ test11
 
 !classDefinition: #MarsRover category: 'MarsRover-WithHeading'!
 Object subclass: #MarsRover
-	instanceVariableNames: 'position head positionVisitors headingVisitors'
+	instanceVariableNames: 'position head positionVisitors headingVisitors proxyPosition proxyHeading'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
@@ -596,20 +616,22 @@ signalInvalidCommand
 	self error: self invalidCommandErrorDescription ! !
 
 
-!MarsRover methodsFor: 'initialization' stamp: 'LM 5/31/2022 18:48:17'!
+!MarsRover methodsFor: 'initialization' stamp: 'BB 6/2/2022 00:01:55'!
 initializeAt: aPosition heading: aHeadingType
 
 	position := aPosition.
 	head := aHeadingType for: self.
 	positionVisitors := OrderedCollection new.
-	headingVisitors := OrderedCollection new.! !
+	headingVisitors := OrderedCollection new.
+	proxyPosition := ProxyPosition new.
+	proxyHeading := ProxyHeading new.! !
 
 
-!MarsRover methodsFor: 'heading' stamp: 'LM 5/31/2022 18:51:06'!
+!MarsRover methodsFor: 'heading' stamp: 'BB 6/2/2022 00:05:37'!
 changeHeadAndLogNewHead: aHead
 	
 	head := aHead.
-	headingVisitors ifNotEmpty: [headingVisitors do: [:aHeadingVisitor | aHeadingVisitor headingChangedTo: head]].! !
+	proxyHeading headingChangedTo: aHead.! !
 
 !MarsRover methodsFor: 'heading' stamp: 'Blas 5/30/2022 21:46:14'!
 headEast
@@ -668,11 +690,11 @@ isRotateRightCommand: aCommand
 	^aCommand = $r! !
 
 
-!MarsRover methodsFor: 'moving' stamp: 'LM 5/31/2022 18:49:44'!
+!MarsRover methodsFor: 'moving' stamp: 'BB 6/1/2022 23:49:18'!
 addToPositionAndLogNewPosition: newPosition
 
 	position := position + newPosition.
-	positionVisitors ifNotEmpty: [ positionVisitors do: [:aPositionVisitor | aPositionVisitor positionChangedTo: position ].].! !
+	proxyPosition positionChangedTo: position.! !
 
 !MarsRover methodsFor: 'moving' stamp: 'HAW 10/7/2021 20:13:24'!
 moveBackward
@@ -725,18 +747,18 @@ processCommand: aCommand
 	self signalInvalidCommand.! !
 
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'LM 5/31/2022 18:46:46'!
-followHeadingChangesWith: aMarsRoverLogger 
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'BB 6/2/2022 00:03:42'!
+followHeadingChangesWith: aHeadingVisitor 
 	
-	headingVisitors addLast: aMarsRoverLogger.
+	proxyHeading addHeadingVisitor: aHeadingVisitor.
 	
 
 	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'LM 5/31/2022 18:46:53'!
-followPositionChangesWith: aMarsRoverLogger 
-	
-	positionVisitors addLast: aMarsRoverLogger.
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'BB 6/1/2022 23:38:48'!
+followPositionChangesWith: aPositionVisitor 
+
+	proxyPosition addPositionVisitor: aPositionVisitor.
 	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -964,21 +986,21 @@ MarsRoverVisitor subclass: #MarsRoverLogger
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-!MarsRoverLogger methodsFor: 'as yet unclassified' stamp: 'LM 5/31/2022 18:42:58'!
+!MarsRoverLogger methodsFor: 'as yet unclassified' stamp: 'BB 6/2/2022 00:08:04'!
 followHeadingAndPositionChangesOn: aMarsRover 
 	
-	aMarsRover followHeadingChangesWith: self.
-	aMarsRover followPositionChangesWith: self! !
+	self followHeadingChangesOn: aMarsRover.
+	self followPositionChangesOn: aMarsRover.! !
 
 !MarsRoverLogger methodsFor: 'as yet unclassified' stamp: 'HAW 5/30/2022 20:43:13'!
 followHeadingChangesOn: aMarsRover 
 	
 	aMarsRover followHeadingChangesWith: self! !
 
-!MarsRoverLogger methodsFor: 'as yet unclassified' stamp: 'HAW 5/30/2022 20:20:23'!
+!MarsRoverLogger methodsFor: 'as yet unclassified' stamp: 'BB 6/1/2022 23:42:08'!
 followPositionChangesOn: aMarsRover 
 	
-	aMarsRover followPositionChangesWith: self! !
+	aMarsRover followPositionChangesWith: self.! !
 
 !MarsRoverLogger methodsFor: 'as yet unclassified' stamp: 'HAW 5/30/2022 20:46:00'!
 headingChangedTo: aMarsRoverHeading
@@ -1049,11 +1071,11 @@ MarsRoverVisitor subclass: #MarsRoverWindow
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-!MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'LM 5/31/2022 18:42:58'!
+!MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'BB 6/2/2022 00:08:24'!
 followHeadingAndPositionChangesOn: aMarsRover 
 	
-	aMarsRover followHeadingChangesWith: self.
-	aMarsRover followPositionChangesWith: self! !
+	self followHeadingChangesOn: aMarsRover.
+	self followPositionChangesOn: aMarsRover.! !
 
 !MarsRoverWindow methodsFor: 'as yet unclassified' stamp: 'LM 5/31/2022 14:22:56'!
 followHeadingChangesOn: aMarsRover 
@@ -1136,3 +1158,53 @@ followHeadingChangesOn: aMarsRover
 followPositionChangesOn: aMarsRover 
 	
 	^self new followPositionChangesOn: aMarsRover ! !
+
+
+!classDefinition: #ProxyHeading category: 'MarsRover-WithHeading'!
+Object subclass: #ProxyHeading
+	instanceVariableNames: 'headingVisitors'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!ProxyHeading methodsFor: 'add visitor' stamp: 'BB 6/2/2022 00:04:45'!
+addHeadingVisitor: aHeadingVisitor 
+	
+	headingVisitors addLast: aHeadingVisitor.! !
+
+
+!ProxyHeading methodsFor: 'change' stamp: 'BB 6/2/2022 00:06:26'!
+headingChangedTo: aHeading
+ 
+	headingVisitors do: [:aHeadingVisitor | aHeadingVisitor headingChangedTo: aHeading ].! !
+
+
+!ProxyHeading methodsFor: 'initialization' stamp: 'BB 6/2/2022 00:02:26'!
+initialize
+
+	headingVisitors := OrderedCollection new.! !
+
+
+!classDefinition: #ProxyPosition category: 'MarsRover-WithHeading'!
+Object subclass: #ProxyPosition
+	instanceVariableNames: 'positionVisitors'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!ProxyPosition methodsFor: 'add visitor' stamp: 'BB 6/1/2022 23:40:46'!
+addPositionVisitor: aPositionVisitor
+
+	positionVisitors addLast: aPositionVisitor.! !
+
+
+!ProxyPosition methodsFor: 'change' stamp: 'BB 6/1/2022 23:46:52'!
+positionChangedTo: aPosition
+
+	positionVisitors do: [ :aPositionVisitor | aPositionVisitor positionChangedTo: aPosition].! !
+
+
+!ProxyPosition methodsFor: 'initialization' stamp: 'BB 6/1/2022 23:40:46'!
+initialize
+
+	positionVisitors := OrderedCollection new.! !
