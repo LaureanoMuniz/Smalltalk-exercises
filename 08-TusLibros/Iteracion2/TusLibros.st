@@ -119,7 +119,7 @@ test5bookQuantityOfNotAddedBookShouldBeZero
 	
 	catalog := Dictionary with: ('Libro1'->10).
 	cart := Cart withCatalog: catalog.
-	
+
 	self assert: (cart quantityOf: 'Libro1') = 0. ! !
 
 !CartTest methodsFor: 'test' stamp: 'lm 6/6/2022 19:19:52'!
