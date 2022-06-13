@@ -259,76 +259,24 @@ TestCase subclass: #InterfaceTest
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!InterfaceTest methodsFor: 'test - add to cart'!
-! !
+!InterfaceTest methodsFor: 'test' stamp: 'LM 6/13/2022 12:11:26'!
+itemNotSellByTheStore
 
-!InterfaceTest methodsFor: 'test - add to cart'!
-! !
+	^ factory itemNotSellByTheStore! !
 
-!InterfaceTest methodsFor: 'test - add to cart'!
-! !
+!InterfaceTest methodsFor: 'test' stamp: 'LM 6/13/2022 12:11:16'!
+itemSellByTheStore
 
-!InterfaceTest methodsFor: 'test - add to cart'!
-! !
+	^ factory itemSellByTheStore! !
 
+!InterfaceTest methodsFor: 'test' stamp: 'LM 6/13/2022 14:56:09'!
+setUp
 
-!InterfaceTest methodsFor: 'test - create cart'!
-! !
-
-!InterfaceTest methodsFor: 'test - create cart'!
-! !
-
-!InterfaceTest methodsFor: 'test - create cart'!
-! !
-
-
-!InterfaceTest methodsFor: 'setup'!
-! !
-
-
-!InterfaceTest methodsFor: 'test - checkout'!
-! !
-
-!InterfaceTest methodsFor: 'test - checkout'!
-! !
-
-!InterfaceTest methodsFor: 'test - checkout'!
-! !
-
-!InterfaceTest methodsFor: 'test - checkout'!
-! !
-
-!InterfaceTest methodsFor: 'test - checkout'!
-! !
-
-!InterfaceTest methodsFor: 'test - checkout'!
-! !
-
-!InterfaceTest methodsFor: 'test - checkout'!
-! !
-
-
-!InterfaceTest methodsFor: 'test - list cart'!
-! !
-
-!InterfaceTest methodsFor: 'test - list cart'!
-! !
-
-!InterfaceTest methodsFor: 'test - list cart'!
-! !
-
-
-!InterfaceTest methodsFor: 'test - list purchases'!
-! !
-
-!InterfaceTest methodsFor: 'test - list purchases'!
-! !
-
-!InterfaceTest methodsFor: 'test - list purchases'!
-! !
-
-!InterfaceTest methodsFor: 'test - list purchases'!
-! !
+	factory := StoreTestObjectsFactory new.
+	debitBehavior := [ :anAmount :aCreditCard | ].
+	authenticatorBehavior := [ :aClientId :aPassword | true].
+	timeBehaviour := [:actualTime | true]. 
+	interface := Interface withCatalog: factory defaultCatalog withAuthenticator: self withTimeProvider: self withMerchantProcessor: self.! !
 
 
 !InterfaceTest methodsFor: 'merchant date auth protocol' stamp: 'BB 6/13/2022 03:06:47'!
@@ -341,24 +289,358 @@ debit: anAmount from: aCreditCard
 
 	^debitBehavior value: anAmount value: aCreditCard.! !
 
-!InterfaceTest methodsFor: 'merchant date auth protocol'!
-! !
+!InterfaceTest methodsFor: 'merchant date auth protocol' stamp: 'LM 6/13/2022 14:55:43'!
+is30MinutesBeforeToNow: actualTime.
 
-!InterfaceTest methodsFor: 'merchant date auth protocol' stamp: 'LM 6/13/2022 12:11:26'!
-itemNotSellByTheStore
+	^timeBehaviour value: actualTime.! !
 
-	^ factory itemNotSellByTheStore! !
+!InterfaceTest methodsFor: 'merchant date auth protocol' stamp: 'LM 6/13/2022 13:49:24'!
+today
 
-!InterfaceTest methodsFor: 'merchant date auth protocol' stamp: 'LM 6/13/2022 12:11:16'!
-itemSellByTheStore
+	^factory today.! !
 
-	^ factory itemSellByTheStore! !
+!InterfaceTest methodsFor: 'merchant date auth protocol' stamp: 'LM 6/13/2022 14:55:34'!
+updateLastTimeOperation
+	
+	! !
 
-!InterfaceTest methodsFor: 'merchant date auth protocol'!
-! !
 
-!InterfaceTest methodsFor: 'merchant date auth protocol'!
-! !
+!InterfaceTest methodsFor: 'test - list purchases' stamp: 'LM 6/13/2022 16:17:26'!
+test18listPurchasesOfUserWithNoPurchasesIsEmpty
+
+
+ self assert: (interface listPurchasesForClient: factory clientId withPassword: factory clientPassword) isEmpty.! !
+
+!InterfaceTest methodsFor: 'test - list purchases' stamp: 'LM 6/13/2022 16:17:33'!
+test19listPurchasesOfAClientWithOnlyOneCheckout
+
+	
+	| cartId  card listOfPurchases |
+	
+	
+	cartId := interface createCartWithClientId: factory clientId andPassword: factory clientPassword.
+	card := factory notExpiredCreditCard.
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 2.
+	interface checkOutcartWithId: cartId creditCardNumber: factory creditCardNumber creditCardExpirationDate: card expiration withOwner: factory clientId.
+	
+	listOfPurchases := interface listPurchasesForClient: factory clientId withPassword: factory clientPassword.
+	
+	self assert: listOfPurchases size = 2.
+	
+			! !
+
+!InterfaceTest methodsFor: 'test - list purchases' stamp: 'LM 6/13/2022 16:17:44'!
+test20listPurchasesOfAClientWithMultipleCheckOuts
+
+	
+	| cartId  card listOfPurchases |
+	
+	
+	cartId := interface createCartWithClientId: 	factory clientId andPassword: factory clientPassword.
+	card := factory notExpiredCreditCard.
+	
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 1.
+	interface checkOutcartWithId: cartId creditCardNumber: factory creditCardNumber creditCardExpirationDate: card expiration withOwner: factory clientId.
+	
+	cartId := interface createCartWithClientId: 	factory clientId andPassword: factory clientPassword.
+	
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 2.
+	interface checkOutcartWithId: cartId creditCardNumber: factory creditCardNumber creditCardExpirationDate: card expiration withOwner: factory clientId.
+	
+	listOfPurchases := interface listPurchasesForClient: factory clientId withPassword: factory clientPassword.
+	
+	self assert: listOfPurchases size = 3.
+	
+			! !
+
+!InterfaceTest methodsFor: 'test - list purchases' stamp: 'LM 6/13/2022 16:17:59'!
+test21cannotListPurchasesWithInvalidCredentials
+
+	authenticatorBehavior := [ :aClientId :aPassword | false ].
+	self 
+			should: [interface listPurchasesForClient: factory clientId withPassword:  factory clientPassword.]
+			raise: Error - MessageNotUnderstood
+			withExceptionDo: [ :anError |
+				self assert: anError messageText = Interface invalidUserData .]
+		! !
+
+
+!InterfaceTest methodsFor: 'test - list cart' stamp: 'LM 6/13/2022 16:16:34'!
+test08listCartWithManyBooks
+	
+	| cartId |
+	
+	
+	cartId := interface createCartWithClientId: factory clientId andPassword: factory clientPassword.
+	
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 2.
+	
+	self assert: ((interface listCart: cartId) = (OrderedCollection with: self itemSellByTheStore with: self itemSellByTheStore )).! !
+
+!InterfaceTest methodsFor: 'test - list cart' stamp: 'LM 6/13/2022 16:16:38'!
+test09listCartWithManyBooksAndManyAdditions
+	
+	| cartId |
+	
+	
+	cartId := interface createCartWithClientId: factory clientId andPassword: factory clientPassword.
+	
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 2.
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 1.
+	
+	self assert: ((interface listCart: cartId) = (OrderedCollection with: self itemSellByTheStore with: self itemSellByTheStore with: self itemSellByTheStore)).! !
+
+!InterfaceTest methodsFor: 'test - list cart' stamp: 'LM 6/13/2022 15:47:52'!
+test10cannotListCartIfNotCreated
+	
+	| cartId |
+
+	cartId := nil.
+
+	self 
+		should: [(interface listCart: cartId)]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Interface cartNotCreated .]! !
+
+
+!InterfaceTest methodsFor: 'test - create cart' stamp: 'LM 6/13/2022 16:16:08'!
+test01createEmptyCartSucceeded
+
+	| cartId |
+	
+	cartId := interface createCartWithClientId: 	factory clientId andPassword: factory clientPassword.
+	
+	self assert: (interface listCart: cartId) isEmpty.! !
+
+!InterfaceTest methodsFor: 'test - create cart' stamp: 'LM 6/13/2022 16:16:12'!
+test02cannotCreateCartWithInvalidCredentials
+
+	
+	authenticatorBehavior := [ :aClientId :aPassword | false ].
+	
+	self 
+		should: [interface createCartWithClientId: factory clientId andPassword: factory clientPassword.]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Interface invalidUserData.]! !
+
+!InterfaceTest methodsFor: 'test - create cart' stamp: 'LM 6/13/2022 16:16:20'!
+test03createCartUsesDifferentCartIds
+
+	| cartId1 cartId2 |
+	
+	
+	cartId1 := interface createCartWithClientId: factory clientId andPassword: factory clientPassword.
+	cartId2 := interface createCartWithClientId: factory clientId andPassword: factory clientPassword.
+	
+	self deny: cartId1 = cartId2! !
+
+
+!InterfaceTest methodsFor: 'test - add to cart' stamp: 'LM 6/13/2022 16:16:24'!
+test04canAddItemsToCreatedCart
+
+	| cartId |
+	
+	cartId := interface createCartWithClientId: factory clientId andPassword: factory clientPassword.
+	
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 2.
+	
+	self assert: (((interface listCart: cartId) occurrencesOf: self itemSellByTheStore) = 2).! !
+
+!InterfaceTest methodsFor: 'test - add to cart' stamp: 'LM 6/13/2022 15:46:06'!
+test05cannotAddItemToNotCreatedCart
+
+	| cartId |
+	
+	authenticatorBehavior := [ :aClientId :aPassword | true].
+	
+	cartId := nil.
+
+	self 
+		should: [interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 2.]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Interface cartNotCreated.]! !
+
+!InterfaceTest methodsFor: 'test - add to cart' stamp: 'LM 6/13/2022 16:16:27'!
+test06cannotAdditemNotSellByStore
+	
+	| cartId |
+	
+	
+	cartId := interface createCartWithClientId: factory clientId andPassword: factory clientPassword.
+	
+	self 
+		should: [interface addToCartWithId: cartId bookIsbn: self itemNotSellByTheStore bookQuantity: 2.]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Interface canNotAdditemNotSellByStore.]! !
+
+!InterfaceTest methodsFor: 'test - add to cart' stamp: 'LM 6/13/2022 16:16:31'!
+test07cannotAddItemToCartWhen30MinutesHavePassed
+	
+	| cartId |
+	
+	
+	cartId := interface createCartWithClientId: 	factory clientId andPassword: factory clientPassword.
+	
+	timeBehaviour := [:actualTime | false].
+	
+	self 
+		should: [interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 1.]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Interface cartHasAlreadyExpiredMessage .]
+	
+	
+	
+	! !
+
+
+!InterfaceTest methodsFor: 'test - checkout' stamp: 'LM 6/13/2022 16:16:45'!
+test11checkOutCartWithOnlyOneAddition
+	
+	| cartId card |
+	
+	
+	cartId := interface createCartWithClientId: 	factory clientId andPassword: factory clientPassword.
+	
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 1.
+	
+	card := factory notExpiredCreditCard.
+	
+	interface checkOutcartWithId: cartId creditCardNumber: factory creditCardNumber creditCardExpirationDate: card expiration withOwner: factory clientId.
+	
+	self assert: (interface listPurchasesForClient: factory clientId withPassword:  factory clientPassword) = (OrderedCollection with: self itemSellByTheStore ).! !
+
+!InterfaceTest methodsFor: 'test - checkout' stamp: 'LM 6/13/2022 16:16:53'!
+test12checkOutCartWithManyAdditions
+	
+	| cartId card |
+	
+	
+	cartId := interface createCartWithClientId: factory clientId andPassword: factory clientPassword.
+	
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 1.
+	
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 2.
+	
+	card := factory notExpiredCreditCard.
+	
+	interface checkOutcartWithId: cartId creditCardNumber: factory creditCardNumber creditCardExpirationDate: card expiration withOwner: factory clientId.
+	
+	self assert: (interface listPurchasesForClient: factory clientId withPassword:  factory clientPassword) = (OrderedCollection with: self itemSellByTheStore with: self itemSellByTheStore with: self itemSellByTheStore ).! !
+
+!InterfaceTest methodsFor: 'test - checkout' stamp: 'LM 6/13/2022 16:16:58'!
+test13cannotCheckOutWithEmptyCart
+	
+	| cartId card |
+	
+
+	cartId := interface createCartWithClientId: 	factory clientId andPassword: factory clientPassword.
+	
+	card := factory notExpiredCreditCard.
+	
+	self 
+		should: [interface checkOutcartWithId: cartId creditCardNumber: factory creditCardNumber creditCardExpirationDate: card expiration withOwner: factory clientId.]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier cartCanNotBeEmptyErrorMessage .]
+	
+	
+	
+	! !
+
+!InterfaceTest methodsFor: 'test - checkout' stamp: 'LM 6/13/2022 16:17:02'!
+test14cannotCheckOutWhenTheCreditCardHasNoCredit
+	
+	| cartId card |
+	
+
+	debitBehavior := [ :anAmount :aCreditCard | self error: Cashier creditCardHasNoCreditErrorMessage ].
+	cartId := interface createCartWithClientId: 	factory clientId andPassword: factory clientPassword.
+	
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 1.
+	
+	card := factory notExpiredCreditCard.
+	
+	self 
+		should: [interface checkOutcartWithId: cartId creditCardNumber: factory creditCardNumber creditCardExpirationDate: card expiration withOwner: factory clientId.]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText =  Cashier creditCardHasNoCreditErrorMessage .]
+	
+	
+	
+	! !
+
+!InterfaceTest methodsFor: 'test - checkout' stamp: 'LM 6/13/2022 16:17:06'!
+test15cannotAddItemToCartWhen30MinutesHavePassed
+	
+	| cartId card |
+	
+	
+	cartId := interface createCartWithClientId: 	factory clientId andPassword: factory clientPassword.
+	
+	card := factory notExpiredCreditCard.
+	
+	timeBehaviour := [:actualTime | false].
+	
+	self 
+		should: [interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 1.]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Interface cartHasAlreadyExpiredMessage .]
+	
+	
+	
+	! !
+
+!InterfaceTest methodsFor: 'test - checkout' stamp: 'LM 6/13/2022 16:17:11'!
+test16cannotCheckOutWithExpiredCard
+	
+	| cartId card |
+	
+	
+	
+	cartId := interface createCartWithClientId: factory clientId andPassword: factory clientPassword.
+	
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 1.
+	
+	card := factory expiredCreditCard.
+	
+	self 
+		should: [interface checkOutcartWithId: cartId creditCardNumber: factory creditCardNumber creditCardExpirationDate: card expiration withOwner: factory clientId.]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier canNotChargeAnExpiredCreditCardErrorMessage.]
+	
+	
+	
+	! !
+
+!InterfaceTest methodsFor: 'test - checkout' stamp: 'LM 6/13/2022 16:17:22'!
+test17cannotCheckOutACartTwice
+	
+	| cartId card |
+	
+	
+	cartId := interface createCartWithClientId: factory clientId andPassword: factory clientPassword.
+	
+	interface addToCartWithId: cartId bookIsbn: self itemSellByTheStore bookQuantity: 1.
+	
+	card := factory notExpiredCreditCard .
+	interface checkOutcartWithId: cartId creditCardNumber: factory creditCardNumber creditCardExpirationDate: card expiration withOwner: factory clientId.
+	self 
+		should: [interface checkOutcartWithId: cartId creditCardNumber: factory creditCardNumber creditCardExpirationDate: card expiration withOwner: factory clientId.]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Interface cannotCheckOutInvalidCartId .]
+	
+	
+	
+	! !
 
 
 !classDefinition: #Cart category: 'TusLibros'!
@@ -567,8 +849,10 @@ expiration
 	^expiration copy.! !
 
 
-!CreditCard methodsFor: 'as yet unclassified'!
-! !
+!CreditCard methodsFor: 'nil' stamp: 'LM 6/13/2022 13:15:48'!
+= anotherCreditCard
+
+^ true.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -589,28 +873,85 @@ Object subclass: #Interface
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!Interface methodsFor: 'cart creation'!
+!Interface methodsFor: 'cart creation' stamp: 'LM 6/13/2022 14:23:17'!
+createCartWithClientId: aClientId andPassword: aPassword
+ 	
+	(authenticator authenticateClientWithId: aClientId andPassword: aPassword) ifFalse: [self error: Interface invalidUserData].
+	
+	nextCartId := nextCartId + 1.
+	
+	carts add: (nextCartId->(Cart acceptingItemsOf: catalog)).
+	lastOperationTime updateLastTimeOperation.
+	^nextCartId.! !
+
+
+!Interface methodsFor: 'initalization' stamp: 'LM 6/13/2022 14:20:08'!
+initializeWithCatalog: aCatalog withAuthenticator: anAuthenticator withDateProvider: aDateProvider withMerchantProcessor: aMerchantProcessor
+	
+	catalog := aCatalog.
+	authenticator := anAuthenticator.
+	carts := Dictionary new.
+	nextCartId := 1.
+	purchasesBook := Dictionary new.
+	lastOperationTime := aDateProvider.
+	merchantProcessor:= aMerchantProcessor.! !
+
+
+!Interface methodsFor: 'accessing' stamp: 'LM 6/13/2022 14:41:19'!
+listCart: aCartId
+	
+	(lastOperationTime is30MinutesBeforeToNow: (Time now)) ifFalse: [self error: Interface cartHasAlreadyExpiredMessage.].
+	
+	(carts includesKey: aCartId) ifFalse: [self error: Interface cartNotCreated].
+	lastOperationTime updateLastTimeOperation.
+	^(carts at: aCartId) items.! !
+
+
+!Interface methodsFor: 'checkout' stamp: 'LM 6/13/2022 15:40:39'!
+checkOutcartWithId: cartId creditCardNumber: aCreditCardNumber creditCardExpirationDate: aDate withOwner: clientId
+
+	| cart creditCard salesBook cashier |
+	
+	(lastOperationTime is30MinutesBeforeToNow: (Time now)) ifFalse: [self error: Interface cartHasAlreadyExpiredMessage.].
+	cart := carts at: cartId ifAbsent: [self error: Interface cannotCheckOutInvalidCartId].
+	
+	creditCard := CreditCard expiringOn: aDate.
+	salesBook  := OrderedCollection new.
+	cashier := Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: merchantProcessor
+		on: lastOperationTime today
+		registeringOn: salesBook
+		toClient: clientId.
+	
+	cashier checkOut.
+	
+	(purchasesBook includesKey: clientId) ifFalse: [purchasesBook add: (clientId->OrderedCollection new)].
+	
+	
+	 salesBook do: [ :aSale | aSale items do: [ :item | (purchasesBook at: clientId) add: item ]].
+	
+	carts removeKey: cartId
 ! !
 
 
-!Interface methodsFor: 'initalization'!
-! !
+!Interface methodsFor: 'purchases' stamp: 'LM 6/13/2022 16:05:15'!
+listPurchasesForClient: aClientId withPassword: aPassword
+ 
+	(authenticator authenticateClientWithId: aClientId andPassword: aPassword) ifFalse: [self error: Interface invalidUserData].
+	
+	^purchasesBook at: aClientId ifAbsent: [OrderedCollection new].! !
 
 
-!Interface methodsFor: 'accessing'!
-! !
-
-
-!Interface methodsFor: 'checkout'!
-! !
-
-
-!Interface methodsFor: 'purchases'!
-! !
-
-
-!Interface methodsFor: 'adding'!
-! !
+!Interface methodsFor: 'adding' stamp: 'LM 6/13/2022 14:40:44'!
+addToCartWithId: aCartId bookIsbn: aBookIsbn bookQuantity: aQuantity 
+	
+	(lastOperationTime is30MinutesBeforeToNow: (Time now)) ifFalse: [self error: Interface cartHasAlreadyExpiredMessage.].
+	(carts includesKey: aCartId) ifFalse: [self error: Interface cartNotCreated].
+	(catalog includesKey: aBookIsbn) ifFalse: [self error: Interface canNotAdditemNotSellByStore].
+	(carts at: aCartId) add: aQuantity of: aBookIsbn.
+	lastOperationTime updateLastTimeOperation.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -623,8 +964,10 @@ canNotAdditemNotSellByStore
 
 	^'Can not add item not sell by store'.! !
 
-!Interface class methodsFor: 'as yet unclassified'!
-! !
+!Interface class methodsFor: 'as yet unclassified' stamp: 'LM 6/13/2022 13:39:55'!
+cartHasAlreadyExpiredMessage
+
+	^'Cart has already expired because last operation was 30 minutes ago'.! !
 
 !Interface class methodsFor: 'as yet unclassified' stamp: 'BB 6/13/2022 00:51:42'!
 cartNotCreated
@@ -636,15 +979,22 @@ invalidUserData
 
 	^'Invalid user data'.! !
 
-!Interface class methodsFor: 'as yet unclassified'!
-! !
+!Interface class methodsFor: 'as yet unclassified' stamp: 'LM 6/13/2022 13:32:24'!
+withCatalog: aCatalog withAuthenticator: anAuthenticator withTimeProvider: aDateProvider withMerchantProcessor: aMerchantProcessor
+
+	^self new initializeWithCatalog: aCatalog withAuthenticator: anAuthenticator withDateProvider: aDateProvider withMerchantProcessor: aMerchantProcessor.! !
 
 
-!Interface class methodsFor: 'purchases'!
-! !
+!Interface class methodsFor: 'purchases' stamp: 'LM 6/13/2022 15:08:43'!
+clientDoesNotHaveAnyPurchase
+
+	^ 'Client does not have any purchase yet'.! !
 
 
-!Interface class methodsFor: 'checkout'!
+!Interface class methodsFor: 'checkout' stamp: 'LM 6/13/2022 15:41:04'!
+cannotCheckOutInvalidCartId
+
+	'Cannot check out with Invalid CartId'.
 ! !
 
 
@@ -720,8 +1070,10 @@ itemSellByTheStore
 	
 	^ 'validBook'! !
 
-!StoreTestObjectsFactory methodsFor: 'items'!
-! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'LM 6/13/2022 13:10:04'!
+itemSellByTheStorePrice
+
+	^10! !
 
 
 !StoreTestObjectsFactory methodsFor: 'cart' stamp: 'HernanWilkinson 6/17/2013 18:08'!
