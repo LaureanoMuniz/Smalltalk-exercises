@@ -1,0 +1,646 @@
+
+
+----STARTUP---- (13 June 2022 03:31:48) as /home/blas/facultad/linux64/CuisUniversity-5235.image!
+
+
+!methodRemoval: InterfaceTest #test09checkOutCartFailedWithExpiredCreditCard stamp: 'BB 6/13/2022 03:31:55'!
+test09checkOutCartFailedWithExpiredCreditCard
+	
+	| interface factory cartId item card clientId clientPassword |
+	
+	authenticatorBehavior := [ :aClientId :aPassword | true].
+	debitBehavior := [ :anAmount :aCreditCard |].
+	
+	factory := StoreTestObjectsFactory new.
+	
+	dateBehavior := [factory today].
+	
+	interface := Interface withCatalog: factory defaultCatalog withAuthenticator: self withDateProvider: self withMerchantProcessor: self.
+	
+	item := factory itemSellByTheStore.
+	
+	clientId := factory clientId.
+	
+	clientPassword := factory clientPassword.
+	
+	cartId := interface createCartWithClientId: 	clientId andPassword: clientPassword.
+	
+	interface addToCartWithId: cartId bookIsbn: item bookQuantity: 1.
+	
+	card := factory expiredCreditCard.
+	
+	interface checkOutcartWithId: cartId creditCardNumber: factory creditCardNumber creditCardExpirationDate: card expiration withOwner: clientId.
+	
+	self assert: (interface listPurchasesForClient: clientId withPassword: clientPassword) = OrderedCollection with item.!
+
+!testRun: #InterfaceTest #test07listCartNotCreated stamp: 'BB 6/13/2022 03:31:58'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'BB 6/13/2022 03:32:13'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'BB 6/13/2022 03:32:13'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'BB 6/13/2022 03:32:13'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'BB 6/13/2022 03:32:13'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'BB 6/13/2022 03:32:13'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'BB 6/13/2022 03:32:13'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'BB 6/13/2022 03:32:13'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'BB 6/13/2022 03:32:13'!
+PASSED!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:32:19'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:32:19'!
+ERROR!
+!Sale class methodsFor: 'instance creation' stamp: 'BB 6/13/2022 03:32:43'!
+of: aTotal withItems: items forClient: client
+
+	"should assert total is not negative or 0!!"
+	^self new initializeTotal: aTotal ! !
+!Sale class methodsFor: 'instance creation' stamp: 'BB 6/13/2022 03:32:47' prior: 50513552!
+of: aTotal withItems: items forClient: client
+
+	"should assert total is not negative or 0!!"
+	^self new initializeTotal: aTotal withItems: items forClient: client.! !
+!Sale methodsFor: 'initialization' stamp: 'BB 6/13/2022 03:32:56'!
+initializeTotal: aTotal withItems: items forClient: client! !
+
+Object subclass: #Sale
+	instanceVariableNames: 'total items client'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #Sale
+	instanceVariableNames: 'total items client'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #Sale
+	instanceVariableNames: 'total books client'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #Sale
+	instanceVariableNames: 'total books clientId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Sale category: 'TusLibros' stamp: 'BB 6/13/2022 03:33:17'!
+Object subclass: #Sale
+	instanceVariableNames: 'total books clientId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'BB 6/13/2022 03:33:22'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'BB 6/13/2022 03:33:22'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'BB 6/13/2022 03:33:22'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'BB 6/13/2022 03:33:22'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'BB 6/13/2022 03:33:22'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'BB 6/13/2022 03:33:22'!
+PASSED!
+!Sale methodsFor: 'initialization' stamp: 'BB 6/13/2022 03:33:58' prior: 50513567!
+initializeTotal: aTotal withItems: anItemsCollection forClient: aClientId
+
+	total := aTotal.
+	! !
+
+Object subclass: #Sale
+	instanceVariableNames: 'total items client'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Sale category: 'TusLibros' stamp: 'BB 6/13/2022 03:34:08'!
+Object subclass: #Sale
+	instanceVariableNames: 'total items client'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Sale methodsFor: 'initialization' stamp: 'BB 6/13/2022 03:34:20' prior: 50513616!
+initializeTotal: aTotal withItems: anItemsCollection forClient: aClientId
+
+	total := aTotal.
+	items := anItemsCollection.
+	client := aClientId.! !
+!Sale methodsFor: 'nil' stamp: 'BB 6/13/2022 03:34:52'!
+items
+
+	^items copy.! !
+!Sale methodsFor: 'as yet unclassified' stamp: 'BB 6/13/2022 03:35:04'!
+client
+
+	^client copy.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'BB 6/13/2022 03:35:11'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'BB 6/13/2022 03:35:11'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'BB 6/13/2022 03:35:11'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'BB 6/13/2022 03:35:11'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'BB 6/13/2022 03:35:11'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'BB 6/13/2022 03:35:11'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'BB 6/13/2022 03:35:11'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'BB 6/13/2022 03:35:11'!
+PASSED!
+!Cashier methodsFor: 'checkout - private' stamp: 'BB 6/13/2022 03:35:40' prior: 50506573!
+createSale
+
+	^ Sale of: total withItems: (cart items)  forClient: client.
+! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'BB 6/13/2022 03:35:47'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'BB 6/13/2022 03:35:47'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'BB 6/13/2022 03:35:47'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'BB 6/13/2022 03:35:47'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'BB 6/13/2022 03:35:47'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'BB 6/13/2022 03:35:47'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'BB 6/13/2022 03:35:47'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'BB 6/13/2022 03:35:47'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'BB 6/13/2022 03:35:50'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'BB 6/13/2022 03:35:50'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'BB 6/13/2022 03:35:50'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'BB 6/13/2022 03:35:50'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'BB 6/13/2022 03:35:50'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'BB 6/13/2022 03:35:50'!
+PASSED!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:35:55'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:35:55'!
+ERROR!
+!Interface methodsFor: 'checkout' stamp: 'BB 6/13/2022 03:36:27' prior: 50512708!
+checkOutcartWithId: cartId creditCardNumber: aCreditCardNumber creditCardExpirationDate: aDate withOwner: clientId
+
+	| cart creditCard salesBook |
+	
+	cart := carts at: cartId.
+	
+	creditCard := CreditCard expiringOn: aDate.
+	
+	salesBook := OrderedCollection new.
+	
+	Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: merchantProcessor
+		on: dateProvider today
+		registeringOn: salesBook
+		toClient: clientId.
+	
+	(purchasesBook includesKey: clientId) ifTrue: [purchasesBook add: (clientId->salesBook)] ifFalse: [
+		salesBook do: [ :sale | (purchasesBook at: clientId items) add: sale ].
+		]. 
+	
+	
+! !
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:36:32'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:36:32'!
+ERROR!
+!InterfaceTest methodsFor: 'test' stamp: 'BB 6/13/2022 03:36:59' prior: 50512820!
+test08checkOutCartSuccess
+	
+	| interface factory cartId item card clientId clientPassword |
+	
+	authenticatorBehavior := [ :aClientId :aPassword | true].
+	debitBehavior := [ :anAmount :aCreditCard |].
+	
+	factory := StoreTestObjectsFactory new.
+	
+	dateBehavior := [factory today].
+	
+	interface := Interface withCatalog: factory defaultCatalog withAuthenticator: self withDateProvider: self withMerchantProcessor: self.
+	
+	item := factory itemSellByTheStore.
+	
+	clientId := factory clientId.
+	
+	clientPassword := factory clientPassword.
+	
+	cartId := interface createCartWithClientId: 	clientId andPassword: clientPassword.
+	
+	interface addToCartWithId: cartId bookIsbn: item bookQuantity: 1.
+	
+	card := factory notExpiredCreditCard.
+	
+	interface checkOutcartWithId: cartId creditCardNumber: factory creditCardNumber creditCardExpirationDate: card expiration withOwner: clientId.
+	
+	self assert: (interface listPurchasesForClient: clientId withPassword: clientPassword) = (OrderedCollection with: item).! !
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:37:03'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:37:03'!
+ERROR!
+!Interface methodsFor: 'checkout' stamp: 'BB 6/13/2022 03:37:33' prior: 50513728!
+checkOutcartWithId: cartId creditCardNumber: aCreditCardNumber creditCardExpirationDate: aDate withOwner: clientId
+
+	| cart creditCard salesBook cashier |
+	
+	cart := carts at: cartId.
+	
+	creditCard := CreditCard expiringOn: aDate.
+	
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: merchantProcessor
+		on: dateProvider today
+		registeringOn: salesBook
+		toClient: clientId.
+	
+	cashier checkOut.
+	
+	(purchasesBook includesKey: clientId) ifTrue: [purchasesBook add: (clientId->salesBook)] ifFalse: [
+		salesBook do: [ :sale | (purchasesBook at: clientId items) add: sale ].
+		]. 
+	
+	
+! !
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:37:37'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:37:37'!
+ERROR!
+!Interface methodsFor: 'checkout' stamp: 'BB 6/13/2022 03:37:52' prior: 50513796!
+checkOutcartWithId: cartId creditCardNumber: aCreditCardNumber creditCardExpirationDate: aDate withOwner: clientId
+
+	| cart creditCard salesBook cashier |
+	
+	cart := carts at: cartId.
+	
+	creditCard := CreditCard expiringOn: aDate.
+	
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: merchantProcessor
+		on: dateProvider today
+		registeringOn: salesBook
+		toClient: clientId.
+	
+	cashier checkOut.
+	
+	(purchasesBook includesKey: clientId) ifTrue: [purchasesBook add: (clientId->salesBook)] ifFalse: [
+		salesBook do: [ :sale | (purchasesBook at: clientId) items add: sale ].
+		]. 
+	
+	
+! !
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:37:55'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:37:55'!
+ERROR!
+!Interface methodsFor: 'checkout' stamp: 'BB 6/13/2022 03:39:03' prior: 50513825!
+checkOutcartWithId: cartId creditCardNumber: aCreditCardNumber creditCardExpirationDate: aDate withOwner: clientId
+
+	| cart creditCard salesBook cashier |
+	
+	cart := carts at: cartId.
+	
+	creditCard := CreditCard expiringOn: aDate.
+	
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: merchantProcessor
+		on: dateProvider today
+		registeringOn: salesBook
+		toClient: clientId.
+	
+	cashier checkOut.
+	
+	(purchasesBook includesKey: clientId) ifFalse: [purchasesBook add: (clientId->salesBook)].
+	
+	 salesBook do: [ :sale | (purchasesBook at: clientId) items add: sale ].! !
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:39:14'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:39:14'!
+ERROR!
+!Interface methodsFor: 'checkout' stamp: 'BB 6/13/2022 03:40:47' prior: 50513854!
+checkOutcartWithId: cartId creditCardNumber: aCreditCardNumber creditCardExpirationDate: aDate withOwner: clientId
+
+	| cart creditCard salesBook cashier |
+	
+	cart := carts at: cartId.
+	
+	creditCard := CreditCard expiringOn: aDate.
+	
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: merchantProcessor
+		on: dateProvider today
+		registeringOn: salesBook
+		toClient: clientId.
+	
+	cashier checkOut.
+	
+	(purchasesBook includesKey: clientId) ifFalse: [purchasesBook add: (clientId->salesBook)].
+	
+	 salesBook items do: [ :sale | (purchasesBook at: clientId) add: sale ].! !
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:40:52'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:40:52'!
+ERROR!
+
+a Sale!
+!Interface methodsFor: 'checkout' stamp: 'BB 6/13/2022 03:43:53' prior: 50513883!
+checkOutcartWithId: cartId creditCardNumber: aCreditCardNumber creditCardExpirationDate: aDate withOwner: clientId
+
+	| cart creditCard salesBook cashier |
+	
+	cart := carts at: cartId.
+	
+	creditCard := CreditCard expiringOn: aDate.
+	
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: merchantProcessor
+		on: dateProvider today
+		registeringOn: salesBook
+		toClient: clientId.
+	
+	cashier checkOut.
+	
+	(purchasesBook includesKey: clientId) ifFalse: [purchasesBook add: (clientId->salesBook)].
+	
+	 salesBook do: [ :aSale | aSale items do: [ :item | (purchasesBook at: clientId) add: item ]].
+! !
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:44:07'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:44:07'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:45:12'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:45:12'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'BB 6/13/2022 03:46:38'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'BB 6/13/2022 03:46:38'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'BB 6/13/2022 03:46:38'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'BB 6/13/2022 03:46:38'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'BB 6/13/2022 03:46:38'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'BB 6/13/2022 03:46:38'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'BB 6/13/2022 03:46:42'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'BB 6/13/2022 03:46:42'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'BB 6/13/2022 03:46:42'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'BB 6/13/2022 03:46:42'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'BB 6/13/2022 03:46:42'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'BB 6/13/2022 03:46:42'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'BB 6/13/2022 03:46:42'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'BB 6/13/2022 03:46:42'!
+PASSED!
+
+self items!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:51:11'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:56:30'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:56:30'!
+ERROR!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:57:25'!
+ERROR!
+!Interface methodsFor: 'checkout' stamp: 'BB 6/13/2022 03:58:36' prior: 50513912!
+checkOutcartWithId: cartId creditCardNumber: aCreditCardNumber creditCardExpirationDate: aDate withOwner: clientId
+
+	| cart creditCard salesBook cashier |
+	
+	cart := carts at: cartId.
+	
+	creditCard := CreditCard expiringOn: aDate.
+	
+	salesBook := OrderedCollection new.
+	
+	cashier := Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: merchantProcessor
+		on: dateProvider today
+		registeringOn: salesBook
+		toClient: clientId.
+	
+	cashier checkOut.
+	
+	(purchasesBook includesKey: clientId) ifFalse: [purchasesBook add: (clientId->OrderedCollection new)].
+	
+	 salesBook do: [ :aSale | aSale items do: [ :item | (purchasesBook at: clientId) add: item ]].
+! !
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:58:40'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'BB 6/13/2022 03:58:45'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'BB 6/13/2022 03:58:45'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'BB 6/13/2022 03:58:45'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'BB 6/13/2022 03:58:45'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'BB 6/13/2022 03:58:45'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'BB 6/13/2022 03:58:45'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'BB 6/13/2022 03:58:45'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'BB 6/13/2022 03:58:45'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'BB 6/13/2022 03:58:53'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'BB 6/13/2022 03:58:53'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'BB 6/13/2022 03:58:53'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'BB 6/13/2022 03:58:53'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'BB 6/13/2022 03:58:53'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'BB 6/13/2022 03:58:53'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'BB 6/13/2022 03:58:53'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'BB 6/13/2022 03:58:53'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'BB 6/13/2022 03:58:57'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'BB 6/13/2022 03:58:57'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'BB 6/13/2022 03:58:57'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'BB 6/13/2022 03:58:57'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'BB 6/13/2022 03:58:57'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'BB 6/13/2022 03:58:57'!
+PASSED!
+
+!testRun: #InterfaceTest #test01createEmptyCartSucceeded stamp: 'BB 6/13/2022 03:59:00'!
+PASSED!
+
+!testRun: #InterfaceTest #test02createEmptyCartFailed stamp: 'BB 6/13/2022 03:59:00'!
+PASSED!
+
+!testRun: #InterfaceTest #test03canAddItemsToCreatedCart stamp: 'BB 6/13/2022 03:59:00'!
+PASSED!
+
+!testRun: #InterfaceTest #test04CanNotAddItemToNotCreatedCart stamp: 'BB 6/13/2022 03:59:00'!
+PASSED!
+
+!testRun: #InterfaceTest #test05CanNotAdditemNotSellByStore stamp: 'BB 6/13/2022 03:59:00'!
+PASSED!
+
+!testRun: #InterfaceTest #test06listCart stamp: 'BB 6/13/2022 03:59:00'!
+PASSED!
+
+!testRun: #InterfaceTest #test07listCartNotCreated stamp: 'BB 6/13/2022 03:59:00'!
+PASSED!
+
+!testRun: #InterfaceTest #test08checkOutCartSuccess stamp: 'BB 6/13/2022 03:59:00'!
+PASSED!
+
+----SNAPSHOT----(13 June 2022 03:59:04) CuisUniversity-5235.image priorSource: 5806969!
+
+----QUIT----(13 June 2022 03:59:13) CuisUniversity-5235.image priorSource: 5839169!
