@@ -17,23 +17,23 @@ tearDown
 	session commit.
 	session close! !
 
-!ImportTest methodsFor: 'test' stamp: 'LM 6/23/2022 11:06:59'!
+!ImportTest methodsFor: 'test' stamp: 'LM 6/23/2022 11:21:36'!
 test01Import
 
 	(CustomerImporter from: self validData to: session) value.
 	
 	self assert: 2 = self quantityOfCustomers.
 	
-	self checkPepeData.
+	self assertPepeData.
 	
-	self checkJuanData.
+	self assertJuanData.
 	
 	
 	! !
 
 
-!ImportTest methodsFor: 'check' stamp: 'LM 6/23/2022 10:50:01'!
-checkAddress: address hasStreetName: aStreetName StreetNumber: aStreetNumber Town: aTown Province: aProvince andZipCode: aZipCode     
+!ImportTest methodsFor: 'assert' stamp: 'LM 6/23/2022 11:22:15'!
+assertAddress: address hasStreetName: aStreetName StreetNumber: aStreetNumber Town: aTown Province: aProvince andZipCode: aZipCode     
 
 	self assert: aStreetName = address streetName.
 	self assert: aStreetNumber = address streetNumber.
@@ -41,45 +41,45 @@ checkAddress: address hasStreetName: aStreetName StreetNumber: aStreetNumber Tow
 	self assert: aProvince = address province.
 	self assert: aZipCode = address zipCode! !
 
-!ImportTest methodsFor: 'check' stamp: 'LM 6/23/2022 10:42:12'!
-checkCustomer: aCustomer hasFirstName: aFirstName LastName: aLastName IdNumber: anIdNumber andIdType: anIdType 
+!ImportTest methodsFor: 'assert' stamp: 'LM 6/23/2022 11:22:27'!
+assertCustomer: aCustomer hasFirstName: aFirstName LastName: aLastName IdNumber: anIdNumber andIdType: anIdType 
 
 	self assert: aFirstName = aCustomer firstName.
 	self assert: aLastName = aCustomer lastName.
 	self assert: anIdNumber = aCustomer identificationNumber.
 	self assert: anIdType = aCustomer identificationType.! !
 
-!ImportTest methodsFor: 'check' stamp: 'LM 6/23/2022 10:53:37'!
-checkJuanData
+!ImportTest methodsFor: 'assert' stamp: 'LM 6/23/2022 11:22:27'!
+assertJuanData
 
 	| customer address |
 	
 	
 	customer := self findCustomerWithIdentificationNumber: '23-25666777-9' withIdentificationType: 'C' .
 	
-	self checkCustomer: customer hasFirstName:  'Juan'  LastName:  'Perez' IdNumber: '23-25666777-9' andIdType: 'C'.
+	self assertCustomer: customer hasFirstName:  'Juan'  LastName:  'Perez' IdNumber: '23-25666777-9' andIdType: 'C'.
 
 	address := customer addressAt: 'Alem'. 
 	
-	self checkAddress: address hasStreetName: 'Alem' StreetNumber: 1122 Town: 'CABA' Province:  'CABA'  andZipCode: 1001.
+	self assertAddress: address hasStreetName: 'Alem' StreetNumber: 1122 Town: 'CABA' Province:  'CABA'  andZipCode: 1001.
 ! !
 
-!ImportTest methodsFor: 'check' stamp: 'LM 6/23/2022 10:51:24'!
-checkPepeData
+!ImportTest methodsFor: 'assert' stamp: 'LM 6/23/2022 11:22:27'!
+assertPepeData
 
 	| customer firstAddress secondAdress |
 	
 	customer := self findCustomerWithIdentificationNumber: '22333444' withIdentificationType: 'D' .
 	
-	self checkCustomer: customer hasFirstName: 'Pepe' LastName: 'Sanchez' IdNumber: '22333444' andIdType: 'D'.
+	self assertCustomer: customer hasFirstName: 'Pepe' LastName: 'Sanchez' IdNumber: '22333444' andIdType: 'D'.
 	
 	firstAddress := customer addressAt: 'San Martin'. 
 	
-	self checkAddress: firstAddress hasStreetName: 'San Martin' StreetNumber: 3322 Town: 'Olivos' Province: 'BsAs' andZipCode: 1636.
+	self assertAddress: firstAddress hasStreetName: 'San Martin' StreetNumber: 3322 Town: 'Olivos' Province: 'BsAs' andZipCode: 1636.
 	
 	secondAdress := customer addressAt: 'Maipu'.
 
-	self checkAddress: secondAdress hasStreetName: 'Maipu'  StreetNumber: 888  Town: 'Florida' Province: 'Buenos Aires'  andZipCode: 1122.
+	self assertAddress: secondAdress hasStreetName: 'Maipu'  StreetNumber: 888  Town: 'Florida' Province: 'Buenos Aires'  andZipCode: 1122.
 
 	
 	! !
