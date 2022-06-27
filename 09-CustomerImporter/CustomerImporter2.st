@@ -5,25 +5,25 @@ TestCase subclass: #ImportTest
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!ImportTest methodsFor: 'tests' stamp: 'HAW 5/22/2022 18:17:51'!
-test01Import
+!ImportTest methodsFor: 'tests' stamp: 'lm 6/27/2022 00:36:55'!
+test01import
 
-	CustomerImporter valueFrom: self validImportData into: session..
+	CustomerImporter valueFrom: self validImportData into: session.
 
 	self assertImportedRightNumberOfCustomers.
 	self assertPepeSanchezWasImportedCorrecty.
 	self assertJuanPerezWasImportedCorrectly ! !
 
-!ImportTest methodsFor: 'tests' stamp: 'lm 6/23/2022 20:43:16'!
-test02recordMustBeginWithCOnly
+!ImportTest methodsFor: 'tests' stamp: 'lm 6/27/2022 00:38:51'!
+test02customerRecordMustBeginWithCOnly
 
-	self should: [CustomerImporter valueFrom: self invalidImportCustomerData into: session.] raise: Error - MessageNotUnderstood withExceptionDo: [
+	self should: [CustomerImporter valueFrom: self invalidImportCustomerData into: session.] raise: Error - MessageNotUnderstood withExceptionDo:[
 		:anError | self assert: CustomerImporter invalidRecordType equals: anError messageText.
 		self assert: 0 equals: (session selectAllOfType: Customer) size.
 		].! !
 
-!ImportTest methodsFor: 'tests' stamp: 'lm 6/23/2022 20:44:13'!
-test03recordMustBeginWithAOnly
+!ImportTest methodsFor: 'tests' stamp: 'lm 6/27/2022 00:38:40'!
+test03addressRecordMustBeginWithAOnly
 
 	self should: [CustomerImporter valueFrom: self invalidImportAddressData into: session.] raise: Error - MessageNotUnderstood withExceptionDo: [
 		:anError | self assert: CustomerImporter invalidRecordType equals: anError messageText.
@@ -39,18 +39,42 @@ test04emptyDataShouldFail
 		self assert: 0 equals: (session selectAllOfType: Customer) size.
 		].! !
 
-!ImportTest methodsFor: 'tests' stamp: 'lm 6/23/2022 21:04:56'!
-test05customerFieldsAreAlways5
+!ImportTest methodsFor: 'tests' stamp: 'lm 6/27/2022 00:19:22'!
+test05customerFieldsCannotBeLessThanFive
 
-	self should: [CustomerImporter valueFrom: self invalidCustomerFieldsData into: session.] raise: Error - MessageNotUnderstood withExceptionDo: [
+	self should: [CustomerImporter valueFrom: self invalidCustomerLessFieldsData into: session.] raise: Error - MessageNotUnderstood withExceptionDo: [
 		:anError | self assert: CustomerImporter invalidFieldsQuantity equals: anError messageText.
 		self assert: 0 equals: (session selectAllOfType: Customer) size.
 		].! !
 
-!ImportTest methodsFor: 'tests' stamp: 'lm 6/23/2022 21:09:02'!
-test06addressFieldsAreAlways6
+!ImportTest methodsFor: 'tests' stamp: 'lm 6/27/2022 00:19:48'!
+test06addressFieldsCannotBeLessThanSix
 
-	self should: [CustomerImporter valueFrom: self invalidAddressFieldsData into: session.] raise: Error - MessageNotUnderstood withExceptionDo: [
+	self should: [CustomerImporter valueFrom: self invalidAddressLessFieldsData into: session.] raise: Error - MessageNotUnderstood withExceptionDo: [
+		:anError | self assert: CustomerImporter invalidFieldsQuantity equals: anError messageText.
+		self assert: 0 equals: (session selectAllOfType: Address) size.
+		].! !
+
+!ImportTest methodsFor: 'tests' stamp: 'lm 6/27/2022 00:36:30'!
+test07addressesMustBelongToCustomer
+
+	self should: [CustomerImporter valueFrom: self invalidAddressesWithNoCustomerData into: session.] raise: Error - MessageNotUnderstood withExceptionDo: [
+		:anError | self assert: CustomerImporter addressMustBelongToCustomer equals: anError messageText.
+		self assert: 0 equals: (session selectAllOfType: Address) size.
+		].! !
+
+!ImportTest methodsFor: 'tests' stamp: 'lm 6/27/2022 00:20:11'!
+test08customerFieldsCannotBeMoreThanFive
+
+	self should: [CustomerImporter valueFrom: self invalidCustomerMoreFieldsData into: session.] raise: Error - MessageNotUnderstood withExceptionDo: [
+		:anError | self assert: CustomerImporter invalidFieldsQuantity equals: anError messageText.
+		self assert: 0 equals: (session selectAllOfType: Customer) size.
+		].! !
+
+!ImportTest methodsFor: 'tests' stamp: 'lm 6/27/2022 00:24:17'!
+test09addressFieldsCannotBeMoreThanSix
+
+	self should: [CustomerImporter valueFrom: self invalidAddressMoreFieldsData into: session.] raise: Error - MessageNotUnderstood withExceptionDo: [
 		:anError | self assert: CustomerImporter invalidFieldsQuantity equals: anError messageText.
 		self assert: 0 equals: (session selectAllOfType: Address) size.
 		].! !
@@ -136,20 +160,42 @@ customerWithIdentificationType: anIdType number: anIdNumber
 		ofType: Customer) anyOne! !
 
 
-!ImportTest methodsFor: 'test data' stamp: 'lm 6/23/2022 21:08:42'!
-invalidAddressFieldsData
+!ImportTest methodsFor: 'test data' stamp: 'lm 6/27/2022 00:16:22'!
+invalidAddressLessFieldsData
 
-	^ ReadStream on: 'A,San Martin,3322,Olivos,1636'! !
+	^ ReadStream on: 
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636'! !
 
-!ImportTest methodsFor: 'test data' stamp: 'lm 6/23/2022 21:04:09'!
-invalidCustomerFieldsData
+!ImportTest methodsFor: 'test data' stamp: 'lm 6/27/2022 00:18:02'!
+invalidAddressMoreFieldsData
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAsA,Maipu,888,Florida,1122,Buenos Aires'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'lm 6/27/2022 00:36:30'!
+invalidAddressesWithNoCustomerData
+	^ ReadStream on: 'A,San Martin,3322,Olivos,1636,BsAs'.! !
+
+!ImportTest methodsFor: 'test data' stamp: 'lm 6/27/2022 00:16:47'!
+invalidCustomerLessFieldsData
 
 	^ ReadStream on: 'C,Pepe,Sanchez,D'! !
 
-!ImportTest methodsFor: 'test data' stamp: 'lm 6/23/2022 20:44:42'!
+!ImportTest methodsFor: 'test data' stamp: 'lm 6/27/2022 00:17:44'!
+invalidCustomerMoreFieldsData
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'lm 6/26/2022 23:57:41'!
 invalidImportAddressData
 
-	^ ReadStream on: 'AA,San Martin,3322,Olivos,1636,BsAs'! !
+	^ ReadStream on: 
+'C,Pepe,Sanchez,D,22333444
+AA,San Martin,3322,Olivos,1636,BsAs'! !
 
 !ImportTest methodsFor: 'test data' stamp: 'lm 6/23/2022 20:41:22'!
 invalidImportCustomerData
@@ -161,7 +207,7 @@ invalidImportEmptyData
 
 	^ReadStream on: ''.! !
 
-!ImportTest methodsFor: 'test data' stamp: 'HAW 5/22/2022 18:08:08'!
+!ImportTest methodsFor: 'test data' stamp: 'lm 6/27/2022 00:14:46'!
 validImportData
 
 	^ ReadStream on:
@@ -325,7 +371,20 @@ initializeFrom: aReadStream into: aSession
 	readStream := aReadStream.! !
 
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'lm 6/23/2022 20:56:37'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'lm 6/27/2022 00:09:03'!
+assertRecordFieldsQuantityIs: aPositiveInteger.
+
+	^(record size = aPositiveInteger) ifFalse: [self error: self class invalidFieldsQuantity].
+	
+! !
+
+!CustomerImporter methodsFor: 'evaluating' stamp: 'lm 6/26/2022 23:56:01'!
+assertThatAddressesCanBeImported
+
+^ newCustomer isNil ifTrue: [self error: self class addressMustBelongToCustomer].
+	! !
+
+!CustomerImporter methodsFor: 'evaluating' stamp: 'lm 6/26/2022 23:58:30'!
 createRecord
 
 	self isRecordCustomer ifTrue: [^self importCustomer ].
@@ -334,18 +393,21 @@ createRecord
 	
 	self error: self class invalidRecordType.! !
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'lm 6/23/2022 21:01:24'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'lm 6/27/2022 00:29:20'!
 hasLineToRead
 
-	self streamIsNotEmpty.
+	
 	line := readStream nextLine.
 	^line notNil! !
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'lm 6/23/2022 21:07:57'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'lm 6/27/2022 00:09:35'!
 importAddress
 
 	| newAddress |
-		(record size = 6) ifFalse: [^self error: self class invalidFieldsQuantity].
+	
+	self assertThatAddressesCanBeImported.
+	self assertRecordFieldsQuantityIs: 6.
+	
 			newAddress := Address new.
 			newCustomer addAddress: newAddress.
 			newAddress streetName: record second.
@@ -354,11 +416,12 @@ importAddress
 			newAddress zipCode: record fifth asNumber .
 			newAddress province: record sixth! !
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'lm 6/23/2022 21:07:33'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'lm 6/27/2022 00:09:46'!
 importCustomer
-
-	(record size = 5) ifFalse: [^self error: self class invalidFieldsQuantity].
-	newCustomer := Customer new.
+	
+	self assertRecordFieldsQuantityIs: 5.
+	
+			newCustomer := Customer new.
 			newCustomer firstName: record second.
 			newCustomer lastName: record third.
 			newCustomer identificationType: record fourth.
@@ -380,11 +443,6 @@ isRecordCustomer
 
 	^ record first = 'C'! !
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'lm 6/23/2022 21:01:24'!
-streamIsNotEmpty
-
-	^ readStream isEmpty ifTrue: [ 	self error: self class emptyData . ]! !
-
 !CustomerImporter methodsFor: 'evaluating' stamp: 'lm 6/23/2022 20:06:54'!
 value
 	
@@ -405,6 +463,11 @@ from: aReadStream into: aSession
 	^self new initializeFrom: aReadStream into: aSession! !
 
 
+!CustomerImporter class methodsFor: 'importing' stamp: 'lm 6/26/2022 23:51:28'!
+addressMustBelongToCustomer
+
+^'Address must belong to any customer'.! !
+
 !CustomerImporter class methodsFor: 'importing' stamp: 'lm 6/23/2022 20:45:53'!
 emptyData
 
@@ -420,10 +483,17 @@ invalidRecordType
 
 	^'Invalid record type'.! !
 
-!CustomerImporter class methodsFor: 'importing' stamp: 'HAW 5/22/2022 18:11:27'!
+!CustomerImporter class methodsFor: 'importing' stamp: 'lm 6/27/2022 00:31:59'!
 valueFrom: aReadStream into: aSession
 
+	self streamIsNotEmpty: aReadStream.
 	^(self from: aReadStream into: aSession) value! !
+
+
+!CustomerImporter class methodsFor: 'evaluating' stamp: 'lm 6/27/2022 00:32:52'!
+streamIsNotEmpty: aReadStream.
+
+	^ aReadStream isEmpty ifTrue: [ 	self error: self emptyData.]! !
 
 
 !classDefinition: #DataBaseSession category: 'CustomerImporter'!
